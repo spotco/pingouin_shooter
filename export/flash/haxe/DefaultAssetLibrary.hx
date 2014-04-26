@@ -65,8 +65,8 @@ class DefaultAssetLibrary extends AssetLibrary {
 		type.set ("assets/images/fx/enemy_explosion.png", Reflect.field (AssetType, "image".toUpperCase ()));
 		className.set ("assets/images/fx/player_bullet.png", __ASSET__assets_images_fx_player_bullet_png);
 		type.set ("assets/images/fx/player_bullet.png", Reflect.field (AssetType, "image".toUpperCase ()));
-		className.set ("assets/images/images-go-here.txt", __ASSET__assets_images_images_go_here_txt);
-		type.set ("assets/images/images-go-here.txt", Reflect.field (AssetType, "text".toUpperCase ()));
+		className.set ("assets/images/player_hitbox.png", __ASSET__assets_images_player_hitbox_png);
+		type.set ("assets/images/player_hitbox.png", Reflect.field (AssetType, "image".toUpperCase ()));
 		className.set ("assets/images/top/top_bg.png", __ASSET__assets_images_top_top_bg_png);
 		type.set ("assets/images/top/top_bg.png", Reflect.field (AssetType, "image".toUpperCase ()));
 		className.set ("assets/music/music-goes-here.txt", __ASSET__assets_music_music_goes_here_txt);
@@ -95,7 +95,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 		addExternal("assets/images/fx/enemy_bullet.png", "image", "assets/images/fx/enemy_bullet.png");
 		addExternal("assets/images/fx/enemy_explosion.png", "image", "assets/images/fx/enemy_explosion.png");
 		addExternal("assets/images/fx/player_bullet.png", "image", "assets/images/fx/player_bullet.png");
-		addExternal("assets/images/images-go-here.txt", "text", "assets/images/images-go-here.txt");
+		addExternal("assets/images/player_hitbox.png", "image", "assets/images/player_hitbox.png");
 		addExternal("assets/images/top/top_bg.png", "image", "assets/images/top/top_bg.png");
 		addExternal("assets/music/music-goes-here.txt", "text", "assets/music/music-goes-here.txt");
 		addExternal("assets/sounds/sounds-go-here.txt", "text", "assets/sounds/sounds-go-here.txt");
@@ -680,7 +680,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 @:keep class __ASSET__assets_images_fx_enemy_bullet_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep class __ASSET__assets_images_fx_enemy_explosion_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep class __ASSET__assets_images_fx_player_bullet_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
-@:keep class __ASSET__assets_images_images_go_here_txt extends flash.utils.ByteArray { }
+@:keep class __ASSET__assets_images_player_hitbox_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep class __ASSET__assets_images_top_top_bg_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep class __ASSET__assets_music_music_goes_here_txt extends flash.utils.ByteArray { }
 @:keep class __ASSET__assets_sounds_sounds_go_here_txt extends flash.utils.ByteArray { }

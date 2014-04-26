@@ -9,12 +9,14 @@ import flixel.ui.FlxButton;
 import flixel.util.FlxMath;
 import flixel.util.FlxVector;
 import openfl.Assets;
+import enemy.*;
 
 class GameState extends FlxState {
 
-	var _player:GamePlayer;
-	var _player_bullets:FlxGroup = new FlxGroup();
-	var _enemies:FlxGroup = new FlxGroup();
+	public var _player:GamePlayer;
+	public var _player_bullets:FlxGroup = new FlxGroup();
+	public var _enemies:FlxGroup = new FlxGroup();
+	public var _enemy_bullets:FlxGroup = new FlxGroup();
 	
 	override public function create():Void {
 		super.create();
@@ -23,12 +25,13 @@ class GameState extends FlxState {
 		this.add(bg);
 		
 		_player = new GamePlayer();
-		_player.x = FlxG.width * 0.5;
-		_player.y = FlxG.height * 0.5;
+		_player._x = FlxG.width * 0.5;
+		_player._y = FlxG.height * 0.5;
 		this.add(_player);
 		
 		this.add(_player_bullets);
 		this.add(_enemies);
+		this.add(_enemy_bullets);
 		
 		var fg = new FlxSprite(0,0,Assets.getBitmapData("assets/images/bottom/bottom_fg.png"));
 		this.add(fg);
@@ -41,7 +44,20 @@ class GameState extends FlxState {
 		
 		if (FlxG.keys.pressed.Z) {
 			var v = _player.get_bullet_facing(10);
-			PlayerBullet.cons_bullet(_player_bullets).init(_player.x + 13, _player.y + 22, v.x, v.y);
+			Bullet.cons_bullet(_player_bullets).init(_player.get_bullet_spawn().x, _player.get_bullet_spawn().y, v.x, v.y);
+		}
+		
+		FlxG.overlap(_enemy_bullets, _player._hitbox, function(b:Bullet, p:FlxSprite):Void {
+			b.kill();
+		});
+		
+		FlxG.overlap(_player_bullets, _enemies, function(b:Bullet, p:FlxSprite):Void {
+			b.kill();
+			p.kill();
+		});
+		
+		if (Util.float_random(0, 50) < 2) {
+			JellyfishEnemy.cons(_enemies, this, 0, Util.float_random(0, FlxG.height), 0);
 		}
 		
 	}
@@ -64,13 +80,13 @@ class GameState extends FlxState {
 		}
 		if (!_control_vec.isZero()) {
 			_control_vec.normalize().scale(5);
-			_player.velocity.x = _control_vec.x;
-			_player.velocity.y = _control_vec.y;
+			_player._vx = _control_vec.x;
+			_player._vy = _control_vec.y;
 		}
-		_player.x += _player.velocity.x;
-		_player.y += _player.velocity.y;
-		_player.velocity.x *= 0.95;
-		_player.velocity.y *= 0.95;
+		_player._x += _player._vx;
+		_player._y += _player._vy;
+		_player._vx *= 0.95;
+		_player._vy *= 0.95;
 	}
 	
 }
