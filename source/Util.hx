@@ -30,4 +30,17 @@ class Util {
 		return _normalized;
 	}
 	
+	static var _flxpt:FlxPoint = new FlxPoint();
+	public static function flxpt(x:Float, y:Float):FlxPoint {
+		_flxpt.x = x;
+		_flxpt.y = y;
+		return _flxpt;
+	}
+	static var _flxpt2:FlxPoint = new FlxPoint();
+	public static function flxpt2(x:Float, y:Float):FlxPoint {
+		_flxpt2.x = x;
+		_flxpt2.y = y;
+		return _flxpt2;
+	}
+	
 }

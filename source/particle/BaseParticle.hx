@@ -1,4 +1,5 @@
-package enemy;
+package particle;
+
 import flash.geom.Vector3D;
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -11,11 +12,7 @@ import flixel.FlxObject;
 import flixel.*;
 import openfl.Assets;
 
-class BaseEnemy extends FlxSprite {
+class BaseParticle extends FlxSprite {
 	
-	public function hit():Void { }
-	public function is_dead():Bool { return true; }
-	public function death_effect():Void { }
-	
-	public function game_update():Void{}
+	public function game_update():Void {}
 }

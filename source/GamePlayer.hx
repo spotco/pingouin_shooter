@@ -33,7 +33,7 @@ class GamePlayer extends FlxGroup {
 		
 		this.add(_body);
 		this.add(_hitbox);
-		
+		_hitbox.alpha = 0;
 		
 	}
 	
@@ -42,7 +42,8 @@ class GamePlayer extends FlxGroup {
 		_tar_ang = tar_ang + 90;
 	}
 	
-	public override function update():Void {
+	var _hitbox_flash_ct = 0;
+	public function game_update():Void {
 		super.update();
 		
 		var facing_x = 0;
@@ -60,7 +61,7 @@ class GamePlayer extends FlxGroup {
 			facing_y = -1;
 		}
 		
-		if (facing_x != 0 || facing_y != 0) {
+		if (facing_x != 0 || facing_y != 0 && GameState.instance._mode == GameStateMode_Gameplay) {
 			this.rotate_to(Math.atan2(facing_y, facing_x) * Util.RAD_TO_DEG);
 		}
 		
@@ -71,7 +72,12 @@ class GamePlayer extends FlxGroup {
 		_hitbox.x = this.get_bullet_spawn().x;
 		_hitbox.y = this.get_bullet_spawn().y;
 		
-		if (_body.velocity.distanceTo(Util.FLXPT_ZERO) < 0.5) {
+		_hitbox.alpha *= 0.9;
+		_hitbox_flash_ct++;
+		if (_hitbox_flash_ct % 30 == 0) _hitbox.alpha = 1;
+		
+		
+		if (Util.flxpt(_vx,_vy).distanceTo(Util.FLXPT_ZERO) < 3) {
 			_body.animation.play("stand");
 		} else {
 			_body.animation.play("swim");
@@ -89,7 +95,7 @@ class GamePlayer extends FlxGroup {
 	var _bullet_spawn = new Vector3D();
 	public function get_bullet_spawn():Vector3D {
 		_bullet_spawn.x = _x + 11;
-		_bullet_spawn.y = _y + 19;
+		_bullet_spawn.y = _y + 20;
 		_bullet_spawn.z = 0;
 		return _bullet_spawn;
 	}

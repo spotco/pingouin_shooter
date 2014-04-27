@@ -46,7 +46,7 @@ class Bullet extends FlxSprite {
 		return this;
 	}
 	
-	public override function update():Void {
+	public function game_update():Void {
 		this.x += this.velocity.x;
 		this.y += this.velocity.y;
 		
