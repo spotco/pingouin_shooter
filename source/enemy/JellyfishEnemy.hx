@@ -12,7 +12,7 @@ import flixel.util.FlxPoint;
 import openfl.Assets;
 import particle.*;
 import particle.RotateFadeVelParticle;
-import pickup.GoldFishPickup;
+import pickup.*;
 
 class JellyfishEnemy extends BaseEnemy {
 	
@@ -80,7 +80,13 @@ class JellyfishEnemy extends BaseEnemy {
 	
 	public override function death_effect():Void {
 		RotateFadeVelParticle.cons_particle(GameState.instance._particles).init(this.x, this.y).p_set_alpha(1, 0);
-		GoldFishPickup.cons(GameState.instance._pickups).init(this.x, this.y);
+		if (GameState.instance.do_1up(1)) {
+			OneUpPickup.cons(GameState.instance._pickups).init(this.x + Util.float_random( -40, 40), this.y + Util.float_random( -40, 40));
+		} else if (GameState.instance.do_energyup(1)) {
+			EnergyUpPickup.cons(GameState.instance._pickups).init(this.x + Util.float_random(-40,40), this.y + Util.float_random(-40,40));
+		} else {
+			GoldFishPickup.cons(GameState.instance._pickups).init(this.x, this.y);
+		}
 	}
 	
 }

@@ -11,16 +11,9 @@ import flixel.input.mouse.FlxMouse;
 import flixel.FlxG;
 
 /*
-tuna
-seal
-orca
 1ups
+powerup
 menu
-
-maybe:
-	powerups
-	boss
-
 */
 class Main extends Sprite 
 {

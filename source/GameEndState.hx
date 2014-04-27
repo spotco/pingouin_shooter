@@ -20,6 +20,7 @@ class GameEndState extends FlxState {
 	var _fadeout:FlxSprite;
 	
 	var _theend:FlxText;
+	var _press_to_continue:FlxText;
 	
 	override public function create():Void {
 		super.create();
@@ -39,6 +40,10 @@ class GameEndState extends FlxState {
 		_theend = Util.cons_text(FlxG.width * 0.5-75, FlxG.height * 0.5, "The End", 0xFFFFFFFF, 32);
 		_theend.visible = false;
 		this.add(_theend);
+		
+		_press_to_continue = Util.cons_text(FlxG.width * 0.5 - 55, FlxG.height * 0.6, "(Press Z to restart)", 0xFFFFFFFF, 10);
+		_press_to_continue.visible = false;
+		this.add(_press_to_continue);
 	}
 	
 	override public function update():Void {
@@ -58,7 +63,7 @@ class GameEndState extends FlxState {
 				_player.animation.play("barf");
 				_baby.animation.play("barf");
 				_mode = 1;
-				_ct = 150;
+				_ct = 100;
 			}
 		} else if (_mode == 1) {
 			_ct--;
@@ -82,6 +87,12 @@ class GameEndState extends FlxState {
 			_fadeout.alpha += 0.05;
 			if (_fadeout.alpha >= 1) {
 				_theend.visible = true;
+				_press_to_continue.visible = true;
+			}
+			if (FlxG.keys.justPressed.Z) {
+				Stats._stage = 0;
+				Stats.set_stage_params();
+				FlxG.switchState(new TopState());
 			}
 		}
 	}

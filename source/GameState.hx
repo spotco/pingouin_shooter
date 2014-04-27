@@ -65,9 +65,10 @@ class GameState extends FlxState {
 		_ui._fadeout.alpha = 1;
 	}
 	
-	
+	var _ct:Int = 0;
 	override public function update():Void {
 		super.update();
+		_ct++;
 		if (_mode == GameStateMode_Jump_In) {
 			_player.game_update();
 			_player._y += _player._vy;
@@ -197,6 +198,36 @@ class GameState extends FlxState {
 		}		
 	}
 	
+	var _next_1up = Util.float_random(30, 45);
+	public function do_1up(i:Float):Bool {
+		if (Stats._current_lives <= 1) {
+			_next_1up-=4;
+		} else if (Stats._current_lives <= 3) {
+			_next_1up-=2;
+		} else {
+			_next_1up-=1;
+		}
+		
+		if (_next_1up < 0) {
+			_next_1up = Util.float_random(35, 55);
+			
+			return true;
+		}
+		trace(_next_1up + " " + _next_energyup);
+		return false;
+	}
+	
+	var _next_energyup = Util.float_random(15, 30);
+	public function do_energyup(i:Float):Bool {
+		_next_energyup-=1;
+		if (_next_energyup < 0) {
+			_next_energyup = Util.float_random(15, 30);
+			
+			return true;
+		}
+		return false;
+	}
+	
 	
 	var _spawn_ct = 0;
 	private function stage_0_spawn():Void {
@@ -257,12 +288,152 @@ class GameState extends FlxState {
 		}
 	}
 	
+	var _seal_ct = 0;
 	private function stage_2_spawn():Void {
-		
+		_spawn_ct++;
+		if (Stats._collected_fish < 10) {
+			if (!Util.flxgroup_contains_instanceof(_enemies, SealEnemy)) {
+				spawn_seal();
+			}
+		} else if (Stats._collected_fish < 40) {
+			if ((_enemies.countLiving() < 6) || (_enemies.countLiving() < 9 && _spawn_ct % 20 == 0)) {
+				spawn_jellyfish();
+			}
+			if (Util.flxgroup_contains_instanceof(_enemies, SealEnemy)) {
+				_seal_ct = 150;
+			} else {
+				_seal_ct--;
+				if (_seal_ct <= 0) spawn_seal();
+			}
+			
+		} else if (Stats._collected_fish < 80) {
+			if ((_enemies.countLiving() < 6) || (_enemies.countLiving() < 10 && _spawn_ct % 20 == 0)) {
+				spawn_jellyfish();
+			}
+			if (Util.flxgroup_contains_instanceof(_enemies, TunaEnemy)) {
+				_tuna_ct = 250;
+			} else {
+				_tuna_ct--;
+				if (_tuna_ct <= 0) spawn_tuna();
+			}
+			if (Util.flxgroup_contains_instanceof(_enemies, SealEnemy)) {
+				_seal_ct = 200;
+			} else {
+				_seal_ct--;
+				if (_seal_ct <= 0) spawn_seal();
+			}
+		} else {
+			if ((_enemies.countLiving() < 6) || (_enemies.countLiving() < 10 && _spawn_ct % 20 == 0)) {
+				if (Util.float_random(0,7)<1) {
+					spawn_bigjellyfish();
+				} else {
+					spawn_jellyfish();
+				}
+			}
+			if (Util.flxgroup_contains_instanceof(_enemies, TunaEnemy)) {
+				_tuna_ct = 250;
+			} else {
+				_tuna_ct--;
+				if (_tuna_ct <= 0) spawn_tuna();
+			}
+			if (Util.flxgroup_contains_instanceof(_enemies, SealEnemy)) {
+				_seal_ct = 200;
+			} else {
+				_seal_ct--;
+				if (_seal_ct <= 0) spawn_seal();
+			}
+		}
 	}
 	
+	var _orca_ct = 0;
 	private function stage_3_spawn():Void {
-		
+		if (Stats._collected_fish < 15) {
+			if (!Util.flxgroup_contains_instanceof(_enemies, OrcaEnemy)) {
+				spawn_orca();
+			}
+		} else if (Stats._collected_fish < 50) {
+			if (Util.flxgroup_contains_instanceof(_enemies, OrcaEnemy)) {
+				_orca_ct = 400;
+			} else {
+				_orca_ct--;
+				if (_orca_ct <= 0) spawn_orca();
+			}
+			if (Util.flxgroup_contains_instanceof(_enemies, TunaEnemy)) {
+				_tuna_ct = 250;
+			} else {
+				_tuna_ct--;
+				if (_tuna_ct <= 0) spawn_tuna();
+			}
+			if ((_enemies.countLiving() < 6) || (_enemies.countLiving() < 8 && _spawn_ct % 40 == 0)) {
+				spawn_jellyfish();
+			}
+			
+		} else if (Stats._collected_fish < 100) {
+			if (Util.flxgroup_contains_instanceof(_enemies, OrcaEnemy)) {
+				_orca_ct = 500;
+			} else {
+				_orca_ct--;
+				if (_orca_ct <= 0) spawn_orca();
+			}
+			if (Util.flxgroup_contains_instanceof(_enemies, SealEnemy)) {
+				_seal_ct = 325;
+			} else {
+				_seal_ct--;
+				if (_seal_ct <= 0) spawn_seal();
+			}
+			if (Util.flxgroup_contains_instanceof(_enemies, TunaEnemy)) {
+				_tuna_ct = 350;
+			} else {
+				_tuna_ct--;
+				if (_tuna_ct <= 0) spawn_tuna();
+			}
+			if ((_enemies.countLiving() < 6) || (_enemies.countLiving() < 10 && _spawn_ct % 40 == 0)) {
+				spawn_jellyfish();
+			}
+			
+		} else {
+			if (Util.flxgroup_contains_instanceof(_enemies, OrcaEnemy)) {
+				_orca_ct = 500;
+			} else {
+				_orca_ct--;
+				if (_orca_ct <= 0) spawn_orca();
+			}
+			if (Util.flxgroup_contains_instanceof(_enemies, SealEnemy)) {
+				_seal_ct = 400;
+			} else {
+				_seal_ct--;
+				if (_seal_ct <= 0) spawn_seal();
+			}
+			if (Util.flxgroup_contains_instanceof(_enemies, TunaEnemy)) {
+				_tuna_ct = 325;
+			} else {
+				_tuna_ct--;
+				if (_tuna_ct <= 0) spawn_tuna();
+			}
+			if ((_enemies.countLiving() < 6) || (_enemies.countLiving() < 10 && _spawn_ct % 40 == 0)) {
+				if (Util.float_random(0,8)<1) {
+					spawn_bigjellyfish();
+				} else {
+					spawn_jellyfish();
+				}
+			}
+		}
+	}
+	
+	private function spawn_orca():Void {
+		if (Util.float_random(0,2)<1) {
+			OrcaEnemy.cons(_enemies).init(-150, Util.float_random(100, FlxG.height - 100), 1);
+		} else {
+			OrcaEnemy.cons(_enemies).init(FlxG.width+150, Util.float_random(100, FlxG.height - 100), -1);
+		}
+	}
+	
+	private function spawn_seal():Void {
+		if (Util.float_random(0,2)<1) {
+			SealEnemy.cons(_enemies).init(-150, Util.float_random(50, FlxG.height - 50), 1);
+		} else {
+			SealEnemy.cons(_enemies).init(FlxG.width+150, Util.float_random(50, FlxG.height - 50), -1);
+		}
 	}
 	
 	private function spawn_jellyfish():Void {

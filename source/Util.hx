@@ -12,7 +12,7 @@ class Util {
 	
 	public static var DEG_TO_RAD = Math.PI / 180;
 	public static var RAD_TO_DEG = 180 / Math.PI;
-	
+	public static var Z_VEC = new Vector3D(0, 0, 1);
 	public static var FLXPT_ZERO = new FlxPoint(0, 0);
 	
 	public static function flxgroup_contains_instanceof(f:FlxGroup, c:Class<FlxBasic>):Bool {
@@ -79,6 +79,14 @@ class Util {
 		_normalized.z = 0;
 		_normalized.normalize();
 		return _normalized;
+	}
+	
+	static var _copy:Vector3D = new Vector3D();
+	public static function copy(v:Vector3D):Vector3D {
+		_copy.x = v.x;
+		_copy.y = v.y;
+		_copy.z = v.z;
+		return _copy;
 	}
 	
 	static var _flxpt:FlxPoint = new FlxPoint();

@@ -9,6 +9,10 @@ import flixel.ui.FlxButton;
 import flixel.util.FlxMath;
 import openfl.Assets;
 
+import flash.filters.GlowFilter;
+import flash.filters.BitmapFilter;
+import flixel.effects.FlxSpriteFilter;
+
 class Bullet extends FlxSprite {
 	
 	public static function cons_bullet(g:FlxGroup, enemy:Bool = false):Bullet {
@@ -26,7 +30,7 @@ class Bullet extends FlxSprite {
 		super();
 		_enemy = enemy;
 		if (_enemy) {
-			this.loadGraphic(Assets.getBitmapData("assets/images/fx/enemy_bullet.png")); 
+			this.loadGraphic(Assets.getBitmapData("assets/images/fx/enemy_bullet.png"));
 		} else {
 			this.loadGraphic(Assets.getBitmapData("assets/images/fx/player_bullet.png")); 
 		}

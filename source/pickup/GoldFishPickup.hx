@@ -40,7 +40,8 @@ class GoldFishPickup extends BasePickup {
 		this.x += _vel.x;
 		this.y += _vel.y;
 		
-		this.scale.x = (_vel.x > 0) ? -1 : 1;
+		this.flipX = (_vel.x > 0);
+		//this.scale.x = (_vel.x > 0) ? -1 : 1;
 		
 		if (_magneted) {
 			var player = GameState.instance._player.get_bullet_spawn();

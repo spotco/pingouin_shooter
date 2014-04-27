@@ -43,6 +43,8 @@ class DefaultAssetLibrary extends AssetLibrary {
 		type.set ("assets/images/bottom/bottom_bg.png", Reflect.field (AssetType, "image".toUpperCase ()));
 		className.set ("assets/images/bottom/bottom_fg.png", __ASSET__assets_images_bottom_bottom_fg_png);
 		type.set ("assets/images/bottom/bottom_fg.png", Reflect.field (AssetType, "image".toUpperCase ()));
+		className.set ("assets/images/char/big_jellyfish.png", __ASSET__assets_images_char_big_jellyfish_png);
+		type.set ("assets/images/char/big_jellyfish.png", Reflect.field (AssetType, "image".toUpperCase ()));
 		className.set ("assets/images/char/goldfish.png", __ASSET__assets_images_char_goldfish_png);
 		type.set ("assets/images/char/goldfish.png", Reflect.field (AssetType, "image".toUpperCase ()));
 		className.set ("assets/images/char/jellyfish.png", __ASSET__assets_images_char_jellyfish_png);
@@ -59,16 +61,44 @@ class DefaultAssetLibrary extends AssetLibrary {
 		type.set ("assets/images/char/top_character_player.png", Reflect.field (AssetType, "image".toUpperCase ()));
 		className.set ("assets/images/char/tuna.png", __ASSET__assets_images_char_tuna_png);
 		type.set ("assets/images/char/tuna.png", Reflect.field (AssetType, "image".toUpperCase ()));
+		className.set ("assets/images/fx/1up.png", __ASSET__assets_images_fx_1up_png);
+		type.set ("assets/images/fx/1up.png", Reflect.field (AssetType, "image".toUpperCase ()));
 		className.set ("assets/images/fx/enemy_bullet.png", __ASSET__assets_images_fx_enemy_bullet_png);
 		type.set ("assets/images/fx/enemy_bullet.png", Reflect.field (AssetType, "image".toUpperCase ()));
 		className.set ("assets/images/fx/enemy_explosion.png", __ASSET__assets_images_fx_enemy_explosion_png);
 		type.set ("assets/images/fx/enemy_explosion.png", Reflect.field (AssetType, "image".toUpperCase ()));
 		className.set ("assets/images/fx/player_bullet.png", __ASSET__assets_images_fx_player_bullet_png);
 		type.set ("assets/images/fx/player_bullet.png", Reflect.field (AssetType, "image".toUpperCase ()));
-		className.set ("assets/images/images-go-here.txt", __ASSET__assets_images_images_go_here_txt);
-		type.set ("assets/images/images-go-here.txt", Reflect.field (AssetType, "text".toUpperCase ()));
+		className.set ("assets/images/fx/plusen.png", __ASSET__assets_images_fx_plusen_png);
+		type.set ("assets/images/fx/plusen.png", Reflect.field (AssetType, "image".toUpperCase ()));
+		className.set ("assets/images/fx/speechbubble.png", __ASSET__assets_images_fx_speechbubble_png);
+		type.set ("assets/images/fx/speechbubble.png", Reflect.field (AssetType, "image".toUpperCase ()));
+		className.set ("assets/images/logo.png", __ASSET__assets_images_logo_png);
+		type.set ("assets/images/logo.png", Reflect.field (AssetType, "image".toUpperCase ()));
+		className.set ("assets/images/player_hitbox.png", __ASSET__assets_images_player_hitbox_png);
+		type.set ("assets/images/player_hitbox.png", Reflect.field (AssetType, "image".toUpperCase ()));
+		className.set ("assets/images/splash.png", __ASSET__assets_images_splash_png);
+		type.set ("assets/images/splash.png", Reflect.field (AssetType, "image".toUpperCase ()));
+		className.set ("assets/images/ss_1.png", __ASSET__assets_images_ss_1_png);
+		type.set ("assets/images/ss_1.png", Reflect.field (AssetType, "image".toUpperCase ()));
+		className.set ("assets/images/ss_2.png", __ASSET__assets_images_ss_2_png);
+		type.set ("assets/images/ss_2.png", Reflect.field (AssetType, "image".toUpperCase ()));
+		className.set ("assets/images/ss_3.png", __ASSET__assets_images_ss_3_png);
+		type.set ("assets/images/ss_3.png", Reflect.field (AssetType, "image".toUpperCase ()));
+		className.set ("assets/images/top/baby_anim.png", __ASSET__assets_images_top_baby_anim_png);
+		type.set ("assets/images/top/baby_anim.png", Reflect.field (AssetType, "image".toUpperCase ()));
+		className.set ("assets/images/top/mom_anim.png", __ASSET__assets_images_top_mom_anim_png);
+		type.set ("assets/images/top/mom_anim.png", Reflect.field (AssetType, "image".toUpperCase ()));
+		className.set ("assets/images/top/player_anim.png", __ASSET__assets_images_top_player_anim_png);
+		type.set ("assets/images/top/player_anim.png", Reflect.field (AssetType, "image".toUpperCase ()));
 		className.set ("assets/images/top/top_bg.png", __ASSET__assets_images_top_top_bg_png);
 		type.set ("assets/images/top/top_bg.png", Reflect.field (AssetType, "image".toUpperCase ()));
+		className.set ("assets/images/top/top_crowd.png", __ASSET__assets_images_top_top_crowd_png);
+		type.set ("assets/images/top/top_crowd.png", Reflect.field (AssetType, "image".toUpperCase ()));
+		className.set ("assets/images/top/top_crowd_medium.png", __ASSET__assets_images_top_top_crowd_medium_png);
+		type.set ("assets/images/top/top_crowd_medium.png", Reflect.field (AssetType, "image".toUpperCase ()));
+		className.set ("assets/images/top/top_smallcrowd.png", __ASSET__assets_images_top_top_smallcrowd_png);
+		type.set ("assets/images/top/top_smallcrowd.png", Reflect.field (AssetType, "image".toUpperCase ()));
 		className.set ("assets/music/music-goes-here.txt", __ASSET__assets_music_music_goes_here_txt);
 		type.set ("assets/music/music-goes-here.txt", Reflect.field (AssetType, "text".toUpperCase ()));
 		className.set ("assets/sounds/sounds-go-here.txt", __ASSET__assets_sounds_sounds_go_here_txt);
@@ -84,6 +114,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 		addExternal("assets/data/data-goes-here.txt", "text", "assets/data/data-goes-here.txt");
 		addExternal("assets/images/bottom/bottom_bg.png", "image", "assets/images/bottom/bottom_bg.png");
 		addExternal("assets/images/bottom/bottom_fg.png", "image", "assets/images/bottom/bottom_fg.png");
+		addExternal("assets/images/char/big_jellyfish.png", "image", "assets/images/char/big_jellyfish.png");
 		addExternal("assets/images/char/goldfish.png", "image", "assets/images/char/goldfish.png");
 		addExternal("assets/images/char/jellyfish.png", "image", "assets/images/char/jellyfish.png");
 		addExternal("assets/images/char/orca.png", "image", "assets/images/char/orca.png");
@@ -92,11 +123,25 @@ class DefaultAssetLibrary extends AssetLibrary {
 		addExternal("assets/images/char/top_character_mom.png", "image", "assets/images/char/top_character_mom.png");
 		addExternal("assets/images/char/top_character_player.png", "image", "assets/images/char/top_character_player.png");
 		addExternal("assets/images/char/tuna.png", "image", "assets/images/char/tuna.png");
+		addExternal("assets/images/fx/1up.png", "image", "assets/images/fx/1up.png");
 		addExternal("assets/images/fx/enemy_bullet.png", "image", "assets/images/fx/enemy_bullet.png");
 		addExternal("assets/images/fx/enemy_explosion.png", "image", "assets/images/fx/enemy_explosion.png");
 		addExternal("assets/images/fx/player_bullet.png", "image", "assets/images/fx/player_bullet.png");
-		addExternal("assets/images/images-go-here.txt", "text", "assets/images/images-go-here.txt");
+		addExternal("assets/images/fx/plusen.png", "image", "assets/images/fx/plusen.png");
+		addExternal("assets/images/fx/speechbubble.png", "image", "assets/images/fx/speechbubble.png");
+		addExternal("assets/images/logo.png", "image", "assets/images/logo.png");
+		addExternal("assets/images/player_hitbox.png", "image", "assets/images/player_hitbox.png");
+		addExternal("assets/images/splash.png", "image", "assets/images/splash.png");
+		addExternal("assets/images/ss_1.png", "image", "assets/images/ss_1.png");
+		addExternal("assets/images/ss_2.png", "image", "assets/images/ss_2.png");
+		addExternal("assets/images/ss_3.png", "image", "assets/images/ss_3.png");
+		addExternal("assets/images/top/baby_anim.png", "image", "assets/images/top/baby_anim.png");
+		addExternal("assets/images/top/mom_anim.png", "image", "assets/images/top/mom_anim.png");
+		addExternal("assets/images/top/player_anim.png", "image", "assets/images/top/player_anim.png");
 		addExternal("assets/images/top/top_bg.png", "image", "assets/images/top/top_bg.png");
+		addExternal("assets/images/top/top_crowd.png", "image", "assets/images/top/top_crowd.png");
+		addExternal("assets/images/top/top_crowd_medium.png", "image", "assets/images/top/top_crowd_medium.png");
+		addExternal("assets/images/top/top_smallcrowd.png", "image", "assets/images/top/top_smallcrowd.png");
 		addExternal("assets/music/music-goes-here.txt", "text", "assets/music/music-goes-here.txt");
 		addExternal("assets/sounds/sounds-go-here.txt", "text", "assets/sounds/sounds-go-here.txt");
 		addExternal("assets/sounds/beep.ogg", "sound", "assets/sounds/beep.ogg");
@@ -669,6 +714,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 @:keep class __ASSET__assets_data_data_goes_here_txt extends null { }
 @:keep class __ASSET__assets_images_bottom_bottom_bg_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep class __ASSET__assets_images_bottom_bottom_fg_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep class __ASSET__assets_images_char_big_jellyfish_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep class __ASSET__assets_images_char_goldfish_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep class __ASSET__assets_images_char_jellyfish_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep class __ASSET__assets_images_char_orca_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
@@ -677,11 +723,25 @@ class DefaultAssetLibrary extends AssetLibrary {
 @:keep class __ASSET__assets_images_char_top_character_mom_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep class __ASSET__assets_images_char_top_character_player_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep class __ASSET__assets_images_char_tuna_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep class __ASSET__assets_images_fx_1up_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep class __ASSET__assets_images_fx_enemy_bullet_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep class __ASSET__assets_images_fx_enemy_explosion_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep class __ASSET__assets_images_fx_player_bullet_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
-@:keep class __ASSET__assets_images_images_go_here_txt extends null { }
+@:keep class __ASSET__assets_images_fx_plusen_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep class __ASSET__assets_images_fx_speechbubble_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep class __ASSET__assets_images_logo_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep class __ASSET__assets_images_player_hitbox_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep class __ASSET__assets_images_splash_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep class __ASSET__assets_images_ss_1_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep class __ASSET__assets_images_ss_2_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep class __ASSET__assets_images_ss_3_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep class __ASSET__assets_images_top_baby_anim_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep class __ASSET__assets_images_top_mom_anim_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep class __ASSET__assets_images_top_player_anim_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep class __ASSET__assets_images_top_top_bg_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep class __ASSET__assets_images_top_top_crowd_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep class __ASSET__assets_images_top_top_crowd_medium_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep class __ASSET__assets_images_top_top_smallcrowd_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep class __ASSET__assets_music_music_goes_here_txt extends null { }
 @:keep class __ASSET__assets_sounds_sounds_go_here_txt extends null { }
 @:keep class __ASSET__assets_sounds_beep_ogg extends null { }
@@ -689,6 +749,21 @@ class DefaultAssetLibrary extends AssetLibrary {
 
 
 #elseif html5
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

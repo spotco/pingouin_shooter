@@ -46,6 +46,9 @@ class TopState extends FlxState {
 		
 		if (Stats._stage == 0) {
 			this.add(new FlxSprite(0, 0, Assets.getBitmapData("assets/images/top/top_smallcrowd.png")));
+			
+			this.add(new FlxSprite(FlxG.width*0.2, FlxG.height*0.1, Assets.getBitmapData("assets/images/logo.png")));
+			
 			var bub = new FlxSprite(FlxG.width * 0.85, FlxG.height * 0.4, Assets.getBitmapData("assets/images/fx/speechbubble.png"));
 			bub.alpha = 0.6;
 			this.add(bub);
@@ -75,7 +78,7 @@ class TopState extends FlxState {
 			eat_target_offset.y = -75;
 			
 		} else if (Stats._stage == 3) {
-			this.add(new FlxSprite(0, 0, Assets.getBitmapData("assets/images/top/top_crowd.png")));
+			this.add(new FlxSprite(0, 0, Assets.getBitmapData("assets/images/top/top_crowd_medium.png")));
 			_eat_target = cons_baby(FlxG.width * 0.2, FlxG.height * 0.65 + 49,this);
 			_eat_target.scale.set(1.3, 1.3);
 			

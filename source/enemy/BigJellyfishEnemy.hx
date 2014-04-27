@@ -12,7 +12,7 @@ import flixel.util.FlxPoint;
 import openfl.Assets;
 import particle.*;
 import particle.RotateFadeVelParticle;
-import pickup.GoldFishPickup;
+import pickup.*;
 
 class BigJellyfishEnemy extends BaseEnemy {
 	
@@ -82,8 +82,15 @@ class BigJellyfishEnemy extends BaseEnemy {
 	
 	public override function death_effect():Void {
 		RotateFadeVelParticle.cons_particle(GameState.instance._particles).init(this.x, this.y).p_set_alpha(1, 0).p_set_scale(2);
-		GoldFishPickup.cons(GameState.instance._pickups).init(this.x + Util.float_random(-10,10) , this.y + Util.float_random(-10,10) );
-		GoldFishPickup.cons(GameState.instance._pickups).init(this.x + Util.float_random(-10,10) , this.y + Util.float_random(-10,10));
+		if (GameState.instance.do_1up(2)) {
+			OneUpPickup.cons(GameState.instance._pickups).init(this.x + Util.float_random( -40, 40), this.y + Util.float_random( -40, 40));
+		} else if (GameState.instance.do_energyup(2)) {
+			EnergyUpPickup.cons(GameState.instance._pickups).init(this.x + Util.float_random(-40,40), this.y + Util.float_random(-40,40));
+		} else {
+			for (i in 0 ... 2) GoldFishPickup.cons(GameState.instance._pickups).init(this.x + Util.float_random(-10,10) , this.y + Util.float_random(-10,10) );
+		}
+		
+
 	}
 	
 }
