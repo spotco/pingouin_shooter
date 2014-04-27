@@ -21,6 +21,10 @@ class Util {
 		return min + Math.random() * (max - min);
 	}
 	
+	public static function pt_dist(x_0:Float, y_0:Float, x_1:Float, y_1:Float):Float {
+		return Math.sqrt(Math.pow(x_1 - x_0, 2) + Math.pow(y_1 - y_0, 2));
+	}
+	
 	static var _normalized:Vector3D = new Vector3D();
 	public static function normalized(x:Float, y:Float):Vector3D {
 		_normalized.x = x;

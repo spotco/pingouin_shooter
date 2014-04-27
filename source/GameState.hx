@@ -67,9 +67,9 @@ class GameState extends FlxState {
 		super.update();
 		if (_mode == GameStateMode_Jump_In) {
 			_player.game_update();
-			_ui._fadeout.alpha -= 0.05;
 			_player._y += _player._vy;
 			_player._vy *= 0.95;
+			_ui._fadeout.alpha -= 0.05;
 			if (_ui._fadeout.alpha <= 0) {
 				_mode = GameStateMode_Gameplay;
 			}
@@ -138,7 +138,11 @@ class GameState extends FlxState {
 			_control_vec.y = 1;
 		}
 		if (!_control_vec.isZero()) {
-			_control_vec.normalize().scale(5);
+			if (FlxG.keys.pressed.SHIFT) {
+				_control_vec.normalize().scale(2);
+			} else {
+				_control_vec.normalize().scale(5);
+			}
 			
 			_player._vx = _control_vec.x;
 			_player._vy = _control_vec.y;

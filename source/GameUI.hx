@@ -58,6 +58,12 @@ class GameUI extends FlxGroup {
 	
 	public function game_update():Void {
 		_fish_disp.text = "Fish: " + Stats._current_fish + "/" + Stats._required_fish;
+		if (Stats._current_fish >= Stats._required_fish) {
+			_fish_disp.color = 0xFF00FF00;
+		} else {
+			_fish_disp.color = 0xFFFFFFFF;
+		}
+		
 		_lives_disp.text = "Lives: " + Stats._current_lives;
 		_energy_disp.text = "Energy: " + Stats._current_energy + "/" + Stats._max_energy;
 	}
