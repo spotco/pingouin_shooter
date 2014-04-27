@@ -11,9 +11,7 @@ import flixel.input.mouse.FlxMouse;
 import flixel.FlxG;
 
 /*
-1ups
-powerup
-menu
+ * hearts when feed done
 */
 class Main extends Sprite 
 {

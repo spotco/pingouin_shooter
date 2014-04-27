@@ -24,6 +24,7 @@ class GameEndState extends FlxState {
 	
 	override public function create():Void {
 		super.create();
+		FlxG.sound.playMusic(Assets.getMusic("assets/music/top.mp3"));
 		this.add(new FlxSprite(0, 0, Assets.getBitmapData("assets/images/top/top_bg.png")));
 		this.add(new FlxSprite(0, 0, Assets.getBitmapData("assets/images/top/top_smallcrowd.png")));
 		

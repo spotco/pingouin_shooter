@@ -73,6 +73,8 @@ class DefaultAssetLibrary extends AssetLibrary {
 		type.set ("assets/images/fx/plusen.png", Reflect.field (AssetType, "image".toUpperCase ()));
 		className.set ("assets/images/fx/speechbubble.png", __ASSET__assets_images_fx_speechbubble_png);
 		type.set ("assets/images/fx/speechbubble.png", Reflect.field (AssetType, "image".toUpperCase ()));
+		className.set ("assets/images/images-go-here.txt", __ASSET__assets_images_images_go_here_txt);
+		type.set ("assets/images/images-go-here.txt", Reflect.field (AssetType, "text".toUpperCase ()));
 		className.set ("assets/images/logo.png", __ASSET__assets_images_logo_png);
 		type.set ("assets/images/logo.png", Reflect.field (AssetType, "image".toUpperCase ()));
 		className.set ("assets/images/player_hitbox.png", __ASSET__assets_images_player_hitbox_png);
@@ -99,8 +101,16 @@ class DefaultAssetLibrary extends AssetLibrary {
 		type.set ("assets/images/top/top_crowd_medium.png", Reflect.field (AssetType, "image".toUpperCase ()));
 		className.set ("assets/images/top/top_smallcrowd.png", __ASSET__assets_images_top_top_smallcrowd_png);
 		type.set ("assets/images/top/top_smallcrowd.png", Reflect.field (AssetType, "image".toUpperCase ()));
-		className.set ("assets/music/music-goes-here.txt", __ASSET__assets_music_music_goes_here_txt);
-		type.set ("assets/music/music-goes-here.txt", Reflect.field (AssetType, "text".toUpperCase ()));
+		className.set ("assets/music/bottom1.mp3", __ASSET__assets_music_bottom1_mp3);
+		type.set ("assets/music/bottom1.mp3", Reflect.field (AssetType, "music".toUpperCase ()));
+		className.set ("assets/music/bottom2.mp3", __ASSET__assets_music_bottom2_mp3);
+		type.set ("assets/music/bottom2.mp3", Reflect.field (AssetType, "music".toUpperCase ()));
+		className.set ("assets/music/bottom3.mp3", __ASSET__assets_music_bottom3_mp3);
+		type.set ("assets/music/bottom3.mp3", Reflect.field (AssetType, "music".toUpperCase ()));
+		className.set ("assets/music/bottom4.mp3", __ASSET__assets_music_bottom4_mp3);
+		type.set ("assets/music/bottom4.mp3", Reflect.field (AssetType, "music".toUpperCase ()));
+		className.set ("assets/music/top.mp3", __ASSET__assets_music_top_mp3);
+		type.set ("assets/music/top.mp3", Reflect.field (AssetType, "music".toUpperCase ()));
 		className.set ("assets/sounds/sounds-go-here.txt", __ASSET__assets_sounds_sounds_go_here_txt);
 		type.set ("assets/sounds/sounds-go-here.txt", Reflect.field (AssetType, "text".toUpperCase ()));
 		className.set ("assets/sounds/beep.mp3", __ASSET__assets_sounds_beep_mp3);
@@ -129,6 +139,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 		addExternal("assets/images/fx/player_bullet.png", "image", "assets/images/fx/player_bullet.png");
 		addExternal("assets/images/fx/plusen.png", "image", "assets/images/fx/plusen.png");
 		addExternal("assets/images/fx/speechbubble.png", "image", "assets/images/fx/speechbubble.png");
+		addExternal("assets/images/images-go-here.txt", "text", "assets/images/images-go-here.txt");
 		addExternal("assets/images/logo.png", "image", "assets/images/logo.png");
 		addExternal("assets/images/player_hitbox.png", "image", "assets/images/player_hitbox.png");
 		addExternal("assets/images/splash.png", "image", "assets/images/splash.png");
@@ -142,7 +153,11 @@ class DefaultAssetLibrary extends AssetLibrary {
 		addExternal("assets/images/top/top_crowd.png", "image", "assets/images/top/top_crowd.png");
 		addExternal("assets/images/top/top_crowd_medium.png", "image", "assets/images/top/top_crowd_medium.png");
 		addExternal("assets/images/top/top_smallcrowd.png", "image", "assets/images/top/top_smallcrowd.png");
-		addExternal("assets/music/music-goes-here.txt", "text", "assets/music/music-goes-here.txt");
+		addExternal("assets/music/bottom1.mp3", "music", "assets/music/bottom1.mp3");
+		addExternal("assets/music/bottom2.mp3", "music", "assets/music/bottom2.mp3");
+		addExternal("assets/music/bottom3.mp3", "music", "assets/music/bottom3.mp3");
+		addExternal("assets/music/bottom4.mp3", "music", "assets/music/bottom4.mp3");
+		addExternal("assets/music/top.mp3", "music", "assets/music/top.mp3");
 		addExternal("assets/sounds/sounds-go-here.txt", "text", "assets/sounds/sounds-go-here.txt");
 		addExternal("assets/sounds/beep.mp3", "music", "assets/sounds/beep.mp3");
 		addExternal("assets/sounds/flixel.mp3", "music", "assets/sounds/flixel.mp3");
@@ -729,6 +744,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 @:keep class __ASSET__assets_images_fx_player_bullet_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep class __ASSET__assets_images_fx_plusen_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep class __ASSET__assets_images_fx_speechbubble_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep class __ASSET__assets_images_images_go_here_txt extends flash.utils.ByteArray { }
 @:keep class __ASSET__assets_images_logo_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep class __ASSET__assets_images_player_hitbox_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep class __ASSET__assets_images_splash_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
@@ -742,13 +758,22 @@ class DefaultAssetLibrary extends AssetLibrary {
 @:keep class __ASSET__assets_images_top_top_crowd_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep class __ASSET__assets_images_top_top_crowd_medium_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep class __ASSET__assets_images_top_top_smallcrowd_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
-@:keep class __ASSET__assets_music_music_goes_here_txt extends flash.utils.ByteArray { }
+@:keep class __ASSET__assets_music_bottom1_mp3 extends flash.media.Sound { }
+@:keep class __ASSET__assets_music_bottom2_mp3 extends flash.media.Sound { }
+@:keep class __ASSET__assets_music_bottom3_mp3 extends flash.media.Sound { }
+@:keep class __ASSET__assets_music_bottom4_mp3 extends flash.media.Sound { }
+@:keep class __ASSET__assets_music_top_mp3 extends flash.media.Sound { }
 @:keep class __ASSET__assets_sounds_sounds_go_here_txt extends flash.utils.ByteArray { }
 @:keep class __ASSET__assets_sounds_beep_mp3 extends flash.media.Sound { }
 @:keep class __ASSET__assets_sounds_flixel_mp3 extends flash.media.Sound { }
 
 
 #elseif html5
+
+
+
+
+
 
 
 

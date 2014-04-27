@@ -57,7 +57,7 @@ class TunaEnemy extends BaseEnemy {
 	}
 	
 	public override function death_effect():Void {
-		RotateFadeVelParticle.cons_particle(GameState.instance._particles).init(this.x, this.y).p_set_alpha(1, 0).p_set_scale(3);
+		RotateFadeVelParticle.cons_particle(GameState.instance._particles).init(this.x, this.y).p_set_alpha(1, 0).p_set_scale(1.5);
 		if (GameState.instance.do_1up(3)) {
 			OneUpPickup.cons(GameState.instance._pickups).init(this.x + Util.float_random( -40, 40), this.y + Util.float_random( -40, 40));
 		} else if (GameState.instance.do_energyup(3)) {

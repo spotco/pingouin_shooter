@@ -19,7 +19,7 @@ class Stats {
 		_current_energy = _max_energy;
 		Stats._current_lives = 5;
 		
-		_stage = 3;
+		//_stage = 3;
 		
 		if (_stage == 0) {
 			_required_fish = 25;

@@ -39,6 +39,16 @@ class GameState extends FlxState {
 		super.create();
 		instance = this;
 		
+		if (Stats._stage == 0) {
+			FlxG.sound.playMusic(Assets.getMusic("assets/music/bottom1.mp3"));
+		} else if (Stats._stage == 1) {
+			FlxG.sound.playMusic(Assets.getMusic("assets/music/bottom2.mp3"));
+		} else if (Stats._stage == 2) {
+			FlxG.sound.playMusic(Assets.getMusic("assets/music/bottom3.mp3"));
+		} else {
+			FlxG.sound.playMusic(Assets.getMusic("assets/music/bottom4.mp3"));
+		}
+		
 		var bg = new FlxSprite(0,0,Assets.getBitmapData("assets/images/bottom/bottom_bg.png"));
 		this.add(bg);
 		
@@ -213,7 +223,6 @@ class GameState extends FlxState {
 			
 			return true;
 		}
-		trace(_next_1up + " " + _next_energyup);
 		return false;
 	}
 	

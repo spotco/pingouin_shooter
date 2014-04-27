@@ -36,6 +36,7 @@ class TopState extends FlxState {
 	
 	override public function create():Void {
 		super.create();
+		FlxG.sound.playMusic(Assets.getMusic("assets/music/top.mp3"));
 		instance = this;
 		
 		Stats._current_energy = Stats._max_energy;
