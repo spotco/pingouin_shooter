@@ -74,6 +74,7 @@ class GoldFishPickup extends BasePickup {
 	public override function pickup_effect():Void { 
 		this.kill();
 		Stats._current_fish++;
+		Stats._collected_fish++;
 	}
 	
 }

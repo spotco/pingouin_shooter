@@ -11,7 +11,6 @@ import flixel.input.mouse.FlxMouse;
 import flixel.FlxG;
 
 /*
-jellyfish pattern fix
 tuna
 seal
 orca

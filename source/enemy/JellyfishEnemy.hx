@@ -53,12 +53,14 @@ class JellyfishEnemy extends BaseEnemy {
 				v.scaleBy(120);
 				_tar.set(x + v.x, y + v.y);
 				
-				var dv = Util.normalized(
-					GameState.instance._player.get_bullet_spawn().x - this.x + Util.float_random( -40, 40), 
-					GameState.instance._player.get_bullet_spawn().y - this.y + Util.float_random( -40, 40)
-				);
-				dv.scaleBy(2.5);
-				Bullet.cons_bullet(GameState.instance._enemy_bullets, true).init(this.x, this.y,dv.x,dv.y);
+				if (Util.pt_dist(x,y,GameState.instance._player._x,GameState.instance._player._y) > 40) {
+					var dv = Util.normalized(
+						GameState.instance._player.get_bullet_spawn().x - this.x + Util.float_random( -40, 40), 
+						GameState.instance._player.get_bullet_spawn().y - this.y + Util.float_random( -40, 40)
+					);
+					dv.scaleBy(2.5);
+					Bullet.cons_bullet(GameState.instance._enemy_bullets, true).init(this.x, this.y, dv.x, dv.y);
+				}
 			}
 			
 		} else if (Util.pt_dist(x, y, _tar.x, _tar.y) < 1) {
@@ -69,10 +71,10 @@ class JellyfishEnemy extends BaseEnemy {
 			this.x = p.x;
 			this.y = p.y;
 			
-			if (this.x < 0 || this.y < 0 || this.x > FlxG.width || this.y > FlxG.height) {
-				this.kill();
-			}
-			
+		}
+		
+		if (this.x < 0 || this.y < 0 || this.x > FlxG.width || this.y > FlxG.height) {
+			this.kill();
 		}
 	}
 	

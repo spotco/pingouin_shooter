@@ -53,14 +53,15 @@ class BigJellyfishEnemy extends BaseEnemy {
 				v.scaleBy(220);
 				_tar.set(x + v.x, y + v.y);
 				
-				var i = 0.0;
-				while (i < 3.14 * 2) {
-					var dv = Util.normalized(Math.cos(i), Math.sin(i));
-					dv.scaleBy(2);
-					Bullet.cons_bullet(GameState.instance._enemy_bullets, true).init(this.x, this.y, dv.x, dv.y);
-					i += 0.2;
+				if (Util.pt_dist(x,y,GameState.instance._player._x,GameState.instance._player._y) > 40) {
+					var i = 0.0;
+					while (i < 3.14 * 2) {
+						var dv = Util.normalized(Math.cos(i), Math.sin(i));
+						dv.scaleBy(2);
+						Bullet.cons_bullet(GameState.instance._enemy_bullets, true).init(this.x, this.y, dv.x, dv.y);
+						i += 0.2;
+					}
 				}
-				
 				
 			}
 			

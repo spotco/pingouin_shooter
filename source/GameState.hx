@@ -185,32 +185,76 @@ class GameState extends FlxState {
 			
 			if (Stats._stage == 0) {
 				stage_0_spawn();
-				
 			} else if (Stats._stage == 1) {
-				stage_0_spawn();
+				stage_1_spawn();
 			} else if (Stats._stage == 2) {
-				stage_0_spawn();
+				stage_2_spawn();
 			} else if (Stats._stage == 3) {
-				stage_0_spawn();
-				
+				stage_3_spawn();
 			} else {
 				stage_0_spawn();
 			}
 		}		
 	}
 	
+	
+	var _spawn_ct = 0;
 	private function stage_0_spawn():Void {
-		if (Util.float_random(0, 50) < 2) {
-			if (Util.float_random(0,2)<1) {
-				BigJellyfishEnemy.cons(_enemies).init(0, Util.float_random(50, FlxG.height - 50), 1);
-			} else {
-				BigJellyfishEnemy.cons(_enemies).init(FlxG.width, Util.float_random(50, FlxG.height - 50), -1);
+		_spawn_ct++;
+		if (Stats._collected_fish < 10) {
+			if ((_enemies.countLiving() < 2) || (_enemies.countLiving() < 8 && _spawn_ct % 50 == 0)) {
+				spawn_jellyfish();
+			}
+			
+		} else {
+			if ((_enemies.countLiving() < 2) || (_enemies.countLiving() < 10 && _spawn_ct % 50 == 0)) {
+				if (!Util.flxgroup_contains_instanceof(_enemies, BigJellyfishEnemy)) {
+					spawn_bigjellyfish();
+				}
+				if (Util.float_random(0,7)<1) {
+					spawn_bigjellyfish();
+				} else {
+					spawn_jellyfish();
+				}
 			}
 		}
 	}
 	
+	var _tuna_ct = 0;
 	private function stage_1_spawn():Void {
-		
+		_spawn_ct++;
+		if (Stats._collected_fish < 6) {
+			if (!Util.flxgroup_contains_instanceof(_enemies, TunaEnemy)) {
+				spawn_tuna();
+			}
+		} else if (Stats._collected_fish < 35) {
+			if (Util.flxgroup_contains_instanceof(_enemies, TunaEnemy)) {
+				_tuna_ct = 150;
+			} else {
+				_tuna_ct--;
+				if (_tuna_ct <= 0) spawn_tuna();
+			}
+			if ((_enemies.countLiving() < 4) || (_enemies.countLiving() < 12 && _spawn_ct % 50 == 0)) {
+				spawn_jellyfish();
+			}
+		} else {
+			if (Util.flxgroup_contains_instanceof(_enemies, TunaEnemy)) {
+				_tuna_ct = 150;
+			} else {
+				_tuna_ct--;
+				if (_tuna_ct <= 0) spawn_tuna();
+			}
+			if ((_enemies.countLiving() < 2) || (_enemies.countLiving() < 10 && _spawn_ct % 50 == 0)) {
+				if (!Util.flxgroup_contains_instanceof(_enemies, BigJellyfishEnemy)) {
+					spawn_bigjellyfish();
+				}
+				if (Util.float_random(0,7)<1) {
+					spawn_bigjellyfish();
+				} else {
+					spawn_jellyfish();
+				}
+			}
+		}
 	}
 	
 	private function stage_2_spawn():Void {
@@ -219,6 +263,35 @@ class GameState extends FlxState {
 	
 	private function stage_3_spawn():Void {
 		
+	}
+	
+	private function spawn_jellyfish():Void {
+		if (Util.float_random(0,2)<1) {
+			JellyfishEnemy.cons(_enemies).init(0, Util.float_random(50, FlxG.height - 50), 1);
+		} else {
+			JellyfishEnemy.cons(_enemies).init(FlxG.width, Util.float_random(50, FlxG.height - 50), -1);
+		}
+	}
+	
+	private function spawn_bigjellyfish():Void {
+		if (Util.float_random(0,2)<1) {
+			BigJellyfishEnemy.cons(_enemies).init(0, Util.float_random(50, FlxG.height - 50), 1);
+		} else {
+			BigJellyfishEnemy.cons(_enemies).init(FlxG.width, Util.float_random(50, FlxG.height - 50), -1);
+		}
+	}
+	
+	private function spawn_tuna():Void {
+		var rnd = Util.float_random(0, 4);
+		if (rnd < 1) {
+			TunaEnemy.cons(_enemies).init(0, Util.float_random(50, 100), 1, 1);
+		} else if (rnd < 2) {
+			TunaEnemy.cons(_enemies).init(0, Util.float_random(400,450), 1, -1);
+		} else if (rnd < 3) {
+			TunaEnemy.cons(_enemies).init(FlxG.width, Util.float_random(50, 100), -1, 1);
+		} else {
+			TunaEnemy.cons(_enemies).init(FlxG.width, Util.float_random(400,450), -1, -1);
+		}
 	}
 	
 		
@@ -290,7 +363,6 @@ class GameState extends FlxState {
 			_player._vx *= 0.95;
 			_player._vy *= 0.95;
 		}
-		
 	}
 	
 }

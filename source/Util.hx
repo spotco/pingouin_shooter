@@ -3,8 +3,10 @@ package ;
 import flash.geom.Vector3D;
 import flixel.*;
 import enemy.*;
+import flixel.group.FlxGroup;
 import flixel.text.FlxText;
 import flixel.util.FlxPoint;
+import flixel.FlxBasic;
 
 class Util {
 	
@@ -12,6 +14,23 @@ class Util {
 	public static var RAD_TO_DEG = 180 / Math.PI;
 	
 	public static var FLXPT_ZERO = new FlxPoint(0, 0);
+	
+	public static function flxgroup_contains_instanceof(f:FlxGroup, c:Class<FlxBasic>):Bool {
+		for (i in f.members) {
+			if (i.alive && i.exists && Type.getClassName(c) == Type.getClassName(Type.getClass(i))) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public static function flxgroup_count_of(f:FlxGroup, c:Class<FlxBasic>):Int {
+		var rtv = 0;
+		for (i in f.members) {
+			if (i.alive && i.exists && Type.getClassName(c) == Type.getClassName(Type.getClass(i))) rtv++;
+		}
+		return rtv;
+	}
 	
 	public static function lerp_deg(src:Float, dest:Float, amt:Float) {
 		var shortest_angle=((((dest - src) % 360) + 540) % 360) - 180;
