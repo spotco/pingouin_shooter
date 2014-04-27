@@ -7,12 +7,38 @@ import flash.events.Event;
 import flash.Lib;
 import flixel.FlxGame;
 import flixel.FlxState;
+import flixel.input.mouse.FlxMouse;
+import flixel.FlxG;
 
+/*
+jellyfish pattern fix
+enemy health bars
+energy work
+tuna
+seal
+orca
+1ups
+dashing
+menu
+controls speech bubble
+
+
+maybe:
+	powerups
+	
+stage 1- 2penguins, jellyfish
+stage 2- some penguins, jellyfish, tuna
+stage 3- baby hatch, jellyfish, tuna, seal
+stage 4- baby again mom gone, jellyfish, tuna, seal, orca
+baby is adult, walks off
+
+*/
 class Main extends Sprite 
 {
 	var gameWidth:Int = 1000; // Width of the game in pixels (might be less / more in actual pixels depending on your zoom).
 	var gameHeight:Int = 500; // Height of the game in pixels (might be less / more in actual pixels depending on your zoom).
 	
+	//var initialState:Class<FlxState> = GameEndState;
 	var initialState:Class<FlxState> = TopState; // The FlxState the game starts with.
 	//var initialState:Class<FlxState> = GameState;
 	
@@ -69,6 +95,9 @@ class Main extends Sprite
 		Stats._stage = 0;
 		Stats.set_stage_params();
 		
-		addChild(new FlxGame(gameWidth, gameHeight, initialState, zoom, framerate, framerate, skipSplash, startFullscreen));
+		var game = new FlxGame(gameWidth, gameHeight, initialState, zoom, framerate, framerate, skipSplash, startFullscreen);
+		addChild(game);
+		FlxG.mouse.useSystemCursor = true;
+		
 	}
 }

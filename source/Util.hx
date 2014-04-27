@@ -3,6 +3,7 @@ package ;
 import flash.geom.Vector3D;
 import flixel.*;
 import enemy.*;
+import flixel.text.FlxText;
 import flixel.util.FlxPoint;
 
 class Util {
@@ -23,6 +24,12 @@ class Util {
 	
 	public static function pt_dist(x_0:Float, y_0:Float, x_1:Float, y_1:Float):Float {
 		return Math.sqrt(Math.pow(x_1 - x_0, 2) + Math.pow(y_1 - y_0, 2));
+	}
+	
+	public static function cons_text(x:Float, y:Float, text:String, color:Int = 0xFF000000, font_size:Int = 8):FlxText {
+		var rtv = new FlxText(x, y, 0, text,font_size);
+		rtv.color = color;
+		return rtv;
 	}
 	
 	static var _normalized:Vector3D = new Vector3D();

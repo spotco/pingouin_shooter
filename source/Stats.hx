@@ -17,6 +17,18 @@ class Stats {
 		
 		if (_stage == 0) {
 			_required_fish = 20;
+			
+		} else if (_stage == 1) {
+			_required_fish = 40;
+			
+		} else if (_stage == 2) {
+			_required_fish = 80;
+			
+		} else if (_stage == 3) {
+			_required_fish = 160;
+			
+		} else {
+			_required_fish = 0;
 		}
 	}
 	

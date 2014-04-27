@@ -17,6 +17,7 @@ enum GameStateMode {
 	GameStateMode_Gameplay;
 	GameStateMode_Jump_Out;
 	GameStateMode_Jump_In;
+	GameStateMode_Death_Fall;
 }
 
 class GameState extends FlxState {
@@ -70,6 +71,7 @@ class GameState extends FlxState {
 			_player._y += _player._vy;
 			_player._vy *= 0.95;
 			_ui._fadeout.alpha -= 0.05;
+			_ui.game_update();
 			if (_ui._fadeout.alpha <= 0) {
 				_mode = GameStateMode_Gameplay;
 			}
@@ -84,6 +86,40 @@ class GameState extends FlxState {
 				FlxG.switchState(new TopState());
 			}
 			
+		} else if (_mode == GameStateMode_Death_Fall) {
+			_ui._fadeout.alpha += 0.05;
+			_player._body.angle += 15;
+			_player._y -= 5;
+			if (_ui._fadeout.alpha >= 1) {
+				Stats._current_lives--;
+				if (Stats._current_lives <= 0) {
+					Stats.set_stage_params();
+					FlxG.switchState(new TopState());
+					
+				} else {
+					_player._x = FlxG.width * 0.5;
+					_player._y = FlxG.height * 0;
+					_player._vx = 0;
+					_player._vy = 15;
+					_player.rotate_to(-90);
+					_player._body.angle = -90;
+					
+					_enemy_bullets.kill();
+					_enemies.kill();
+					_player_bullets.kill();
+					_pickups.kill();
+					_particles.kill();
+					
+					_enemy_bullets.revive();
+					_enemies.revive();
+					_player_bullets.revive();
+					_pickups.revive();
+					_particles.revive();
+					
+					_mode = GameStateMode_Jump_In;
+				}
+			}
+			
 		} else if (_mode == GameStateMode_Gameplay) {
 			this.player_control();
 			if (FlxG.keys.pressed.Z) {
@@ -93,6 +129,7 @@ class GameState extends FlxState {
 			
 			FlxG.overlap(_enemy_bullets, _player._hitbox, function(b:Bullet, p:FlxSprite):Void {
 				b.kill();
+				_mode = GameStateMode_Death_Fall;
 			});
 			
 			FlxG.overlap(_player_bullets, _enemies, function(b:Bullet, p:BaseEnemy):Void {

@@ -77,6 +77,10 @@ class DefaultAssetLibrary extends AssetLibrary {
 		type.set ("assets/images/top/player_anim.png", Reflect.field (AssetType, "image".toUpperCase ()));
 		className.set ("assets/images/top/top_bg.png", __ASSET__assets_images_top_top_bg_png);
 		type.set ("assets/images/top/top_bg.png", Reflect.field (AssetType, "image".toUpperCase ()));
+		className.set ("assets/images/top/top_crowd.png", __ASSET__assets_images_top_top_crowd_png);
+		type.set ("assets/images/top/top_crowd.png", Reflect.field (AssetType, "image".toUpperCase ()));
+		className.set ("assets/images/top/top_smallcrowd.png", __ASSET__assets_images_top_top_smallcrowd_png);
+		type.set ("assets/images/top/top_smallcrowd.png", Reflect.field (AssetType, "image".toUpperCase ()));
 		className.set ("assets/music/music-goes-here.txt", __ASSET__assets_music_music_goes_here_txt);
 		type.set ("assets/music/music-goes-here.txt", Reflect.field (AssetType, "text".toUpperCase ()));
 		className.set ("assets/sounds/sounds-go-here.txt", __ASSET__assets_sounds_sounds_go_here_txt);
@@ -109,6 +113,8 @@ class DefaultAssetLibrary extends AssetLibrary {
 		addExternal("assets/images/top/mom_anim.png", "image", "assets/images/top/mom_anim.png");
 		addExternal("assets/images/top/player_anim.png", "image", "assets/images/top/player_anim.png");
 		addExternal("assets/images/top/top_bg.png", "image", "assets/images/top/top_bg.png");
+		addExternal("assets/images/top/top_crowd.png", "image", "assets/images/top/top_crowd.png");
+		addExternal("assets/images/top/top_smallcrowd.png", "image", "assets/images/top/top_smallcrowd.png");
 		addExternal("assets/music/music-goes-here.txt", "text", "assets/music/music-goes-here.txt");
 		addExternal("assets/sounds/sounds-go-here.txt", "text", "assets/sounds/sounds-go-here.txt");
 		addExternal("assets/sounds/beep.mp3", "music", "assets/sounds/beep.mp3");
@@ -698,6 +704,8 @@ class DefaultAssetLibrary extends AssetLibrary {
 @:keep class __ASSET__assets_images_top_mom_anim_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep class __ASSET__assets_images_top_player_anim_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep class __ASSET__assets_images_top_top_bg_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep class __ASSET__assets_images_top_top_crowd_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep class __ASSET__assets_images_top_top_smallcrowd_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep class __ASSET__assets_music_music_goes_here_txt extends flash.utils.ByteArray { }
 @:keep class __ASSET__assets_sounds_sounds_go_here_txt extends flash.utils.ByteArray { }
 @:keep class __ASSET__assets_sounds_beep_mp3 extends flash.media.Sound { }
@@ -705,6 +713,8 @@ class DefaultAssetLibrary extends AssetLibrary {
 
 
 #elseif html5
+
+
 
 
 

@@ -8,6 +8,7 @@ import flixel.group.FlxGroup;
 import flixel.text.FlxText;
 import flixel.ui.FlxButton;
 import flixel.util.FlxMath;
+import flixel.util.FlxPoint;
 import openfl.Assets;
 import particle.*;
 
@@ -20,9 +21,10 @@ enum TopStateMode {
 
 class TopState extends FlxState {
 	
+	public static var instance:TopState;
+	
 	var _player:FlxSprite;
-	var _mom:FlxSprite;
-	var _baby:FlxSprite;
+	var _eat_target:FlxSprite;
 	
 	var _mom_speechbubble:FlxGroup;
 	var _mom_speechbubble_fishreq:FlxText;
@@ -34,38 +36,64 @@ class TopState extends FlxState {
 	
 	override public function create():Void {
 		super.create();
+		instance = this;
 		
-		var bg = new FlxSprite(0,0,Assets.getBitmapData("assets/images/top/top_bg.png"));
-		this.add(bg);
+		this.add(new FlxSprite(0,0,Assets.getBitmapData("assets/images/top/top_bg.png")));
 		
-		_mom = new FlxSprite(FlxG.width * 0.2, FlxG.height * 0.65);
-		_mom.loadGraphic(Assets.getBitmapData("assets/images/top/mom_anim.png"),true,45,83);
-		_mom.animation.add("barf", [1, 0], 10);
-		_mom.animation.add("stand", [1]);
-		_mom.animation.play("stand");
-		this.add(_mom);
+		var eat_target_offset = Util.flxpt(0, 0);
 		
-		_player = new FlxSprite(FlxG.width * 0.64, FlxG.height * 0.65);
-		_player.loadGraphic(Assets.getBitmapData("assets/images/top/player_anim.png"), true, 45, 85);
-		_player.animation.add("stand", [2]);
-		_player.animation.add("walk", [2, 1],25);
-		_player.animation.add("barf", [2, 0],10);
-		_player.animation.play("stand");
-		this.add(_player);
+		if (Stats._stage == 0) {
+			this.add(new FlxSprite(0, 0, Assets.getBitmapData("assets/images/top/top_smallcrowd.png")));
+			var bub = new FlxSprite(FlxG.width * 0.85, FlxG.height * 0.4, Assets.getBitmapData("assets/images/fx/speechbubble.png"));
+			bub.alpha = 0.6;
+			this.add(bub);
+			this.add(Util.cons_text(FlxG.width * 0.85 + 5, FlxG.height * 0.4 + 5, "Shoot: Z\nDash: X\nMove:\n   Arrow keys"));
+			
+			_eat_target = cons_penguin(FlxG.width * 0.2, FlxG.height * 0.65,this);
+			_eat_target.flipX  = true;
+			
+			eat_target_offset.x = -20;
+			eat_target_offset.y = -65;
+			
+		} else if (Stats._stage == 1) {
+			this.add(new FlxSprite(0, 0, Assets.getBitmapData("assets/images/top/top_crowd.png")));
+			_eat_target = cons_penguin_with_egg(FlxG.width * 0.2, FlxG.height * 0.65,this);
+			
+			eat_target_offset.x = -20;
+			eat_target_offset.y = -65;
+			
+		} else if (Stats._stage == 2) {
+			this.add(new FlxSprite(0, 0, Assets.getBitmapData("assets/images/top/top_crowd.png")));
+			var mom = cons_penguin(FlxG.width * 0.1, FlxG.height * 0.65,this);
+			mom.flipX = true;
+			this.add(mom);
+			_eat_target = cons_baby(FlxG.width * 0.2, FlxG.height * 0.65 + 49,this);
+			
+			eat_target_offset.x = -30;
+			eat_target_offset.y = -75;
+			
+		} else if (Stats._stage == 3) {
+			this.add(new FlxSprite(0, 0, Assets.getBitmapData("assets/images/top/top_crowd.png")));
+			_eat_target = cons_baby(FlxG.width * 0.2, FlxG.height * 0.65 + 49,this);
+			_eat_target.scale.set(1.3, 1.3);
+			
+			eat_target_offset.x = -30;
+			eat_target_offset.y = -75;
+			
+		} else {
+			Stats._stage = 0;
+			Stats.set_stage_params();
+			FlxG.switchState(new GameEndState());
+			return;
+		}
 		
-		/*
-		_baby = new FlxSprite(FlxG.width * 0.1, FlxG.height * 0.65 + 49);
-		_baby.loadGraphic(Assets.getBitmapData("assets/images/top/baby_anim.png"),true,26,34);
-		_baby.animation.add("barf", [1, 0], 10);
-		_baby.animation.add("stand", [1]);
-		_baby.animation.play("barf");
-		this.add(_baby);
-		*/
+		_player = cons_penguin(FlxG.width * 0.64, FlxG.height * 0.65,this);
+		
 		
 		_mom_speechbubble = new FlxGroup();
 		this.add(_mom_speechbubble);
 		
-		var mom_speechbubble_bg = new FlxSprite(_mom.x-20, _mom.y-65, Assets.getBitmapData("assets/images/fx/speechbubble.png"));
+		var mom_speechbubble_bg = new FlxSprite(_eat_target.x+eat_target_offset.x, _eat_target.y+eat_target_offset.y, Assets.getBitmapData("assets/images/fx/speechbubble.png"));
 		mom_speechbubble_bg.alpha = 0.7;
 		_mom_speechbubble.add(mom_speechbubble_bg);
 		
@@ -109,6 +137,20 @@ class TopState extends FlxState {
 			}
 			
 		} else if (_mode == TopStateMode_Fadeout_To_Next) {
+			_player.animation.play("stand");
+			_eat_target.animation.play("stand");
+			
+			_ui.game_update();
+			_mom_speechbubble.visible = false;
+			for (i in _particles.members) if (i.alive) cast(i, BaseParticle).game_update();
+			if (_particles.countLiving() > 0) return;
+			
+			_ui._fadeout.alpha += 0.01;
+			if (_ui._fadeout.alpha >= 1) {
+				Stats._stage++;
+				Stats.set_stage_params();
+				FlxG.switchState(new TopState());
+			}
 			
 		} else if (_mode == TopStateMode_Gameplay) {
 			_ui.game_update();
@@ -135,21 +177,32 @@ class TopState extends FlxState {
 			}
 			
 			if (_particles.countLiving() > 0) {
-				_mom.animation.play("barf");
+				_eat_target.animation.play("barf");
 			} else {
-				_mom.animation.play("stand");
+				_eat_target.animation.play("stand");
 			}
 			
 			if (_player.x < FlxG.width * 0.4) {
 				_mom_speechbubble.visible = true;
 				
 				if (FlxG.keys.justPressed.Z && Stats._current_fish > 0 && Stats._required_fish > 0) {
+					var eat_target_offset = new FlxPoint(0, 0);
+					if (Stats._stage == 0 || Stats._stage == 1) {
+						eat_target_offset.x = 25;
+						eat_target_offset.y = 10;
+					} else if (Stats._stage == 2) {
+						eat_target_offset.x = 15;
+						eat_target_offset.y = 0;
+					} else if (Stats._stage == 3) {
+						eat_target_offset.x = 15;
+						eat_target_offset.y = 0;
+					}
+					
 					BarfFishParticle.cons_particle(_particles).init(
 						Util.flxpt(_player.x, _player.y), 
-						Util.flxpt2(_mom.x + 25, _mom.y + 10)
+						Util.flxpt2(_eat_target.x + eat_target_offset.x, _eat_target.y + eat_target_offset.y)
 					);
 					Stats._current_fish--;
-					Stats._required_fish--;
 					_player_barf_ct = 10;
 				}
 				
@@ -160,6 +213,44 @@ class TopState extends FlxState {
 			if (_player.x > FlxG.width * 0.67) {
 				_mode = TopStateMode_Fadeout_To_Game;
 			}
+		}
+	}
+	
+	public static function cons_baby(x:Float,y:Float,g:FlxGroup):FlxSprite { //FlxG.width * 0.1, FlxG.height * 0.65 + 49
+		var rtv = new FlxSprite(x,y);
+		rtv.loadGraphic(Assets.getBitmapData("assets/images/top/baby_anim.png"),true,26,34);
+		rtv.animation.add("barf", [0, 1], 10);
+		rtv.animation.add("stand", [1]);
+		rtv.animation.play("stand");
+		g.add(rtv);
+		return rtv;
+	}
+	
+	public static function cons_penguin_with_egg(x:Float,y:Float,g:FlxGroup):FlxSprite { //FlxG.width * 0.2, FlxG.height * 0.65
+		var rtv = new FlxSprite(x,y);
+		rtv.loadGraphic(Assets.getBitmapData("assets/images/top/mom_anim.png"),true,45,83);
+		rtv.animation.add("barf", [1, 0], 10);
+		rtv.animation.add("stand", [1]);
+		rtv.animation.play("stand");
+		g.add(rtv);
+		return rtv;
+	}
+	
+	public static function cons_penguin(x:Float,y:Float,g:FlxGroup):FlxSprite { //FlxG.width * 0.64, FlxG.height * 0.65
+		var rtv = new FlxSprite(x,y);
+		rtv.loadGraphic(Assets.getBitmapData("assets/images/top/player_anim.png"), true, 45, 85);
+		rtv.animation.add("stand", [2]);
+		rtv.animation.add("walk", [2, 1],25);
+		rtv.animation.add("barf", [0, 2], 10);
+		rtv.animation.play("stand");
+		g.add(rtv);
+		return rtv;
+	}
+	
+	public function fish_feed_anim_complete():Void {
+		Stats._required_fish--;
+		if (Stats._required_fish <= 0) {
+			_mode = TopStateMode_Fadeout_To_Next;
 		}
 	}
 }

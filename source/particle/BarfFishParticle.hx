@@ -29,7 +29,7 @@ class BarfFishParticle extends BaseParticle{
 	public function init(start:FlxPoint, end:FlxPoint):BarfFishParticle {
 		this.reset(start.x, start.y);
 		_ct = 0;
-		var rnd = Util.float_random(30, 100);
+		var rnd = Util.float_random(80, 150);
 		_curve = BezierCurve.curve_pool_get().cons(
 			BezierCurve.point_pool_get(start.x, start.y),
 			BezierCurve.point_pool_get(start.x - 30, start.y-rnd),
@@ -51,6 +51,8 @@ class BarfFishParticle extends BaseParticle{
 			BezierCurve.curve_pool_dispose(_curve);
 			_curve = null;
 			this.kill();
+			
+			TopState.instance.fish_feed_anim_complete();
 		}
 	}
 	
