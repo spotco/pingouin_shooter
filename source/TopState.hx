@@ -38,6 +38,8 @@ class TopState extends FlxState {
 		super.create();
 		instance = this;
 		
+		Stats._current_energy = Stats._max_energy;
+		
 		this.add(new FlxSprite(0,0,Assets.getBitmapData("assets/images/top/top_bg.png")));
 		
 		var eat_target_offset = Util.flxpt(0, 0);
@@ -248,7 +250,7 @@ class TopState extends FlxState {
 	}
 	
 	public function fish_feed_anim_complete():Void {
-		Stats._required_fish--;
+		Stats._required_fish = cast(Math.max(0,Stats._required_fish-1),Int);
 		if (Stats._required_fish <= 0) {
 			_mode = TopStateMode_Fadeout_To_Next;
 		}

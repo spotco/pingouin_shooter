@@ -12,25 +12,15 @@ import flixel.FlxG;
 
 /*
 jellyfish pattern fix
-enemy health bars
-energy work
 tuna
 seal
 orca
 1ups
-dashing
 menu
-controls speech bubble
-
 
 maybe:
 	powerups
-	
-stage 1- 2penguins, jellyfish
-stage 2- some penguins, jellyfish, tuna
-stage 3- baby hatch, jellyfish, tuna, seal
-stage 4- baby again mom gone, jellyfish, tuna, seal, orca
-baby is adult, walks off
+	boss
 
 */
 class Main extends Sprite 

@@ -6,6 +6,7 @@ import flixel.FlxState;
 import flixel.group.FlxGroup;
 import flixel.text.FlxText;
 import flixel.ui.FlxButton;
+import flixel.ui.FlxBar;
 import flixel.util.FlxMath;
 import flixel.util.FlxVector;
 import openfl.Assets;
@@ -66,6 +67,13 @@ class GameUI extends FlxGroup {
 		
 		_lives_disp.text = "Lives: " + Stats._current_lives;
 		_energy_disp.text = "Energy: " + Stats._current_energy + "/" + Stats._max_energy;
+		if (Stats._current_energy < 30) {
+			_energy_disp.color = 0xFFFF0000;
+		} else if (Stats._current_energy < 50) {
+			_energy_disp.color = 0xFFFFFF00;
+		} else {
+			_energy_disp.color = 0xFFFFFFFF;
+		}
 	}
 	
 }

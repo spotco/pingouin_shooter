@@ -16,6 +16,9 @@ class GamePlayer extends FlxGroup {
 	public var _body:FlxSprite = new FlxSprite();
 	public var _hitbox:FlxSprite = new FlxSprite();
 	
+	public var _dash_ct:Float = 0;
+	public var _dash_vec:FlxVector = new FlxVector();
+	
 	public var _x = 0.0;
 	public var _y = 0.0;
 	public var _vx = 0.0;
@@ -26,7 +29,8 @@ class GamePlayer extends FlxGroup {
 		super();
 		_body.loadGraphic(Assets.getBitmapData("assets/images/char/player.png"), true, 30, 53);
 		_body.animation.add("stand", [0]);
-		_body.animation.add("swim", [0, 1, 2, 1],20,true);
+		_body.animation.add("swim", [0, 1, 3, 1], 20, true);
+		_body.animation.add("dash", [2]);
 		_body.animation.play("stand", true);
 		
 		_hitbox.loadGraphic(Assets.getBitmapData("assets/images/player_hitbox.png"));
@@ -76,8 +80,9 @@ class GamePlayer extends FlxGroup {
 		_hitbox_flash_ct++;
 		if (_hitbox_flash_ct % 30 == 0) _hitbox.alpha = 1;
 		
-		
-		if (Util.flxpt(_vx,_vy).distanceTo(Util.FLXPT_ZERO) < 3) {
+		if (_dash_ct > 0) {
+			_body.animation.play("dash");
+		} else if (Util.flxpt(_vx,_vy).distanceTo(Util.FLXPT_ZERO) < 3) {
 			_body.animation.play("stand");
 		} else {
 			_body.animation.play("swim");

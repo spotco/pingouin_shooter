@@ -18,6 +18,27 @@ class Util {
 		return shortest_angle * amt;
 	}
 	
+	static var _lerp:FlxPoint = new FlxPoint(0, 0);
+	public static function lerp_pos(a:FlxPoint, b:FlxPoint, t:Float):FlxPoint {
+		_lerp.x = lerp(a.x, b.x, t);
+		_lerp.y = lerp(a.y, b.y, t);
+		return _lerp;
+	}
+	
+	public static function drp_pos(a:FlxPoint, b:FlxPoint, div:Float):FlxPoint {
+		_lerp.x = drp(a.x, b.x, div);
+		_lerp.y = drp(a.y, b.y, div);
+		return _lerp;
+	}
+	
+	public static function drp(a:Float, b:Float, div:Float):Float {
+		return a + (b - a) / div;
+	}
+	
+	public static function lerp(a:Float, b:Float, t:Float):Float {
+		return a + (b - a) * t;
+	}
+	
 	public static function float_random(min:Float, max:Float):Float {
 		return min + Math.random() * (max - min);
 	}

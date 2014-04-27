@@ -43,6 +43,8 @@ class DefaultAssetLibrary extends AssetLibrary {
 		type.set ("assets/images/bottom/bottom_bg.png", Reflect.field (AssetType, "image".toUpperCase ()));
 		className.set ("assets/images/bottom/bottom_fg.png", __ASSET__assets_images_bottom_bottom_fg_png);
 		type.set ("assets/images/bottom/bottom_fg.png", Reflect.field (AssetType, "image".toUpperCase ()));
+		className.set ("assets/images/char/big_jellyfish.png", __ASSET__assets_images_char_big_jellyfish_png);
+		type.set ("assets/images/char/big_jellyfish.png", Reflect.field (AssetType, "image".toUpperCase ()));
 		className.set ("assets/images/char/goldfish.png", __ASSET__assets_images_char_goldfish_png);
 		type.set ("assets/images/char/goldfish.png", Reflect.field (AssetType, "image".toUpperCase ()));
 		className.set ("assets/images/char/jellyfish.png", __ASSET__assets_images_char_jellyfish_png);
@@ -96,6 +98,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 		addExternal("assets/data/data-goes-here.txt", "text", "assets/data/data-goes-here.txt");
 		addExternal("assets/images/bottom/bottom_bg.png", "image", "assets/images/bottom/bottom_bg.png");
 		addExternal("assets/images/bottom/bottom_fg.png", "image", "assets/images/bottom/bottom_fg.png");
+		addExternal("assets/images/char/big_jellyfish.png", "image", "assets/images/char/big_jellyfish.png");
 		addExternal("assets/images/char/goldfish.png", "image", "assets/images/char/goldfish.png");
 		addExternal("assets/images/char/jellyfish.png", "image", "assets/images/char/jellyfish.png");
 		addExternal("assets/images/char/orca.png", "image", "assets/images/char/orca.png");
@@ -687,6 +690,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 @:keep class __ASSET__assets_data_data_goes_here_txt extends flash.utils.ByteArray { }
 @:keep class __ASSET__assets_images_bottom_bottom_bg_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep class __ASSET__assets_images_bottom_bottom_fg_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep class __ASSET__assets_images_char_big_jellyfish_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep class __ASSET__assets_images_char_goldfish_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep class __ASSET__assets_images_char_jellyfish_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep class __ASSET__assets_images_char_orca_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
@@ -713,6 +717,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 
 
 #elseif html5
+
 
 
 

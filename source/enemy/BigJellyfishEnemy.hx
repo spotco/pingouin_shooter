@@ -14,12 +14,12 @@ import particle.*;
 import particle.RotateFadeVelParticle;
 import pickup.GoldFishPickup;
 
-class JellyfishEnemy extends BaseEnemy {
+class BigJellyfishEnemy extends BaseEnemy {
 	
-	public static function cons(g:FlxGroup):JellyfishEnemy {		
-		var rtv:JellyfishEnemy = cast(g.getFirstAvailable(JellyfishEnemy),JellyfishEnemy);		
+	public static function cons(g:FlxGroup):BigJellyfishEnemy {		
+		var rtv:BigJellyfishEnemy = cast(g.getFirstAvailable(BigJellyfishEnemy),BigJellyfishEnemy);		
 		if (rtv == null) {
-			rtv = new JellyfishEnemy();
+			rtv = new BigJellyfishEnemy();
 			g.add(rtv);
 		}
 		return rtv;
@@ -27,7 +27,7 @@ class JellyfishEnemy extends BaseEnemy {
 	
 	public function new() {
 		super();
-		this.loadGraphic(Assets.getBitmapData("assets/images/char/jellyfish.png"));
+		this.loadGraphic(Assets.getBitmapData("assets/images/char/big_jellyfish.png"));
 	}
 	
 	var _xdir:Float = 1;
@@ -36,7 +36,7 @@ class JellyfishEnemy extends BaseEnemy {
 	
 	public function init(x:Float, y:Float, xdir:Float):Void {
 		this.reset(x, y);
-		this.health = 2;
+		this.health = 4;
 		_tar.set(x+xdir*80, y);
 		_xdir = xdir;
 		_delay = 0;
@@ -50,22 +50,25 @@ class JellyfishEnemy extends BaseEnemy {
 			_delay--;
 			if (_delay <= 0) {
 				var v = Util.normalized(Util.float_random(60, 120) * _xdir, Util.float_random( -100, 100));
-				v.scaleBy(120);
+				v.scaleBy(220);
 				_tar.set(x + v.x, y + v.y);
 				
-				var dv = Util.normalized(
-					GameState.instance._player.get_bullet_spawn().x - this.x + Util.float_random( -40, 40), 
-					GameState.instance._player.get_bullet_spawn().y - this.y + Util.float_random( -40, 40)
-				);
-				dv.scaleBy(2.5);
-				Bullet.cons_bullet(GameState.instance._enemy_bullets, true).init(this.x, this.y,dv.x,dv.y);
+				var i = 0.0;
+				while (i < 3.14 * 2) {
+					var dv = Util.normalized(Math.cos(i), Math.sin(i));
+					dv.scaleBy(2);
+					Bullet.cons_bullet(GameState.instance._enemy_bullets, true).init(this.x, this.y, dv.x, dv.y);
+					i += 0.2;
+				}
+				
+				
 			}
 			
-		} else if (Util.pt_dist(x, y, _tar.x, _tar.y) < 1) {
+		} else if (Util.pt_dist(x, y, _tar.x, _tar.y) < 4) {
 			_delay = Util.float_random(10, 40);
 			
 		} else {
-			var p = Util.drp_pos(Util.flxpt(x,y), _tar, 30);
+			var p = Util.drp_pos(Util.flxpt(x,y), _tar, 60);
 			this.x = p.x;
 			this.y = p.y;
 			
@@ -77,8 +80,9 @@ class JellyfishEnemy extends BaseEnemy {
 	}
 	
 	public override function death_effect():Void {
-		RotateFadeVelParticle.cons_particle(GameState.instance._particles).init(this.x, this.y).p_set_alpha(1, 0);
-		GoldFishPickup.cons(GameState.instance._pickups).init(this.x, this.y);
+		RotateFadeVelParticle.cons_particle(GameState.instance._particles).init(this.x, this.y).p_set_alpha(1, 0).p_set_scale(2);
+		GoldFishPickup.cons(GameState.instance._pickups).init(this.x + Util.float_random(-10,10) , this.y + Util.float_random(-10,10) );
+		GoldFishPickup.cons(GameState.instance._pickups).init(this.x + Util.float_random(-10,10) , this.y + Util.float_random(-10,10));
 	}
 	
 }
