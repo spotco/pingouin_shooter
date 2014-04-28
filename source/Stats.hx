@@ -43,6 +43,7 @@ class Stats {
 		_current_fish = 1;
 		*/
 		
+		
 	}
 	
 }

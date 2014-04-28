@@ -78,6 +78,7 @@ class SealEnemy extends BaseEnemy {
 				);
 				dv.scaleBy(2.5);
 				Bullet.cons_bullet(GameState.instance._enemy_bullets, true).init(this.x + 25, this.y + 12.5, dv.x, dv.y);
+				Util.sfx("shoot2.mp3", 0.25);
 			}
 			
 			if (Util.pt_dist(this.x, this.y, GameState.instance._player._x, GameState.instance._player._y) < 170) {

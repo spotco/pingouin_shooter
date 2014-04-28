@@ -29,6 +29,8 @@ class TopState extends FlxState {
 	var _mom_speechbubble:FlxGroup;
 	var _mom_speechbubble_fishreq:FlxText;
 	
+	var _heart:FlxSprite;
+	
 	var _particles:FlxGroup;
 	
 	var _ui:GameUI;
@@ -90,6 +92,7 @@ class TopState extends FlxState {
 			Stats._stage = 0;
 			Stats.set_stage_params();
 			FlxG.switchState(new GameEndState());
+			_kill = true;
 			return;
 		}
 		
@@ -118,6 +121,12 @@ class TopState extends FlxState {
 		_particles = new FlxGroup();
 		this.add(_particles);
 		
+		_heart = new FlxSprite(_eat_target.x +60, _eat_target.y - 65, Assets.getBitmapData("assets/images/fx/heart.png"));
+		_heart.scale.set(0.5, 0.5);
+		_heart.alpha = 0.6;
+		_heart.visible = false;
+		this.add(_heart);
+		
 		_ui = new GameUI();
 		this.add(_ui);
 		_ui.game_update();
@@ -126,9 +135,16 @@ class TopState extends FlxState {
 		_ui._fadeout.alpha = 1;
 	}
 	
+	var _kill:Bool = false;
+	var _heart_t:Float = 0;
 	var _player_barf_ct = 0;
 	override public function update():Void {
 		super.update();
+		if (_kill) return;
+		_heart_t += 0.05;
+		var sc = (Math.sin(_heart_t) + 1)/2 * 0.5 + 0.5;
+		_heart.scale.set(sc, sc);
+		
 		if (_mode == TopStateMode_Fadein_From_Game) {
 			_ui._fadeout.alpha -= 0.05;
 			if (_ui._fadeout.alpha <= 0) {
@@ -148,6 +164,8 @@ class TopState extends FlxState {
 			
 			_ui.game_update();
 			_mom_speechbubble.visible = false;
+			_heart.visible = true;
+			_heart.x = _eat_target.x + (_player.x - _eat_target.x) / 2;
 			for (i in _particles.members) if (i.alive) cast(i, BaseParticle).game_update();
 			if (_particles.countLiving() > 0) return;
 			
@@ -192,6 +210,7 @@ class TopState extends FlxState {
 				_mom_speechbubble.visible = true;
 				
 				if (FlxG.keys.justPressed.Z && Stats._current_fish > 0 && Stats._required_fish > 0) {
+					Util.sfx("sfx_jump.mp3");
 					var eat_target_offset = new FlxPoint(0, 0);
 					if (Stats._stage == 0 || Stats._stage == 1) {
 						eat_target_offset.x = 25;
@@ -255,8 +274,11 @@ class TopState extends FlxState {
 	
 	public function fish_feed_anim_complete():Void {
 		Stats._required_fish = cast(Math.max(0,Stats._required_fish-1),Int);
-		if (Stats._required_fish <= 0) {
+		if (Stats._required_fish <= 0 && _mode != TopStateMode_Fadeout_To_Next) {
+			Util.sfx("sfx_goal.mp3");
+			_heart.x = _eat_target.x + (_player.x - _eat_target.x) / 2;
 			_mode = TopStateMode_Fadeout_To_Next;
+			_heart_t = 0;
 		}
 	}
 }

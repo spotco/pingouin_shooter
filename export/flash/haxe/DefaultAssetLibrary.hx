@@ -67,6 +67,8 @@ class DefaultAssetLibrary extends AssetLibrary {
 		type.set ("assets/images/fx/enemy_bullet.png", Reflect.field (AssetType, "image".toUpperCase ()));
 		className.set ("assets/images/fx/enemy_explosion.png", __ASSET__assets_images_fx_enemy_explosion_png);
 		type.set ("assets/images/fx/enemy_explosion.png", Reflect.field (AssetType, "image".toUpperCase ()));
+		className.set ("assets/images/fx/heart.png", __ASSET__assets_images_fx_heart_png);
+		type.set ("assets/images/fx/heart.png", Reflect.field (AssetType, "image".toUpperCase ()));
 		className.set ("assets/images/fx/player_bullet.png", __ASSET__assets_images_fx_player_bullet_png);
 		type.set ("assets/images/fx/player_bullet.png", Reflect.field (AssetType, "image".toUpperCase ()));
 		className.set ("assets/images/fx/plusen.png", __ASSET__assets_images_fx_plusen_png);
@@ -111,8 +113,38 @@ class DefaultAssetLibrary extends AssetLibrary {
 		type.set ("assets/music/bottom4.mp3", Reflect.field (AssetType, "music".toUpperCase ()));
 		className.set ("assets/music/top.mp3", __ASSET__assets_music_top_mp3);
 		type.set ("assets/music/top.mp3", Reflect.field (AssetType, "music".toUpperCase ()));
-		className.set ("assets/sounds/sounds-go-here.txt", __ASSET__assets_sounds_sounds_go_here_txt);
-		type.set ("assets/sounds/sounds-go-here.txt", Reflect.field (AssetType, "text".toUpperCase ()));
+		className.set ("assets/sounds/sfx_bone_1.mp3", __ASSET__assets_sounds_sfx_bone_1_mp3);
+		type.set ("assets/sounds/sfx_bone_1.mp3", Reflect.field (AssetType, "music".toUpperCase ()));
+		className.set ("assets/sounds/sfx_bone_2.mp3", __ASSET__assets_sounds_sfx_bone_2_mp3);
+		type.set ("assets/sounds/sfx_bone_2.mp3", Reflect.field (AssetType, "music".toUpperCase ()));
+		className.set ("assets/sounds/sfx_bone_3.mp3", __ASSET__assets_sounds_sfx_bone_3_mp3);
+		type.set ("assets/sounds/sfx_bone_3.mp3", Reflect.field (AssetType, "music".toUpperCase ()));
+		className.set ("assets/sounds/sfx_bone_4.mp3", __ASSET__assets_sounds_sfx_bone_4_mp3);
+		type.set ("assets/sounds/sfx_bone_4.mp3", Reflect.field (AssetType, "music".toUpperCase ()));
+		className.set ("assets/sounds/sfx_explosion.mp3", __ASSET__assets_sounds_sfx_explosion_mp3);
+		type.set ("assets/sounds/sfx_explosion.mp3", Reflect.field (AssetType, "music".toUpperCase ()));
+		className.set ("assets/sounds/sfx_goal.mp3", __ASSET__assets_sounds_sfx_goal_mp3);
+		type.set ("assets/sounds/sfx_goal.mp3", Reflect.field (AssetType, "music".toUpperCase ()));
+		className.set ("assets/sounds/sfx_hit.mp3", __ASSET__assets_sounds_sfx_hit_mp3);
+		type.set ("assets/sounds/sfx_hit.mp3", Reflect.field (AssetType, "music".toUpperCase ()));
+		className.set ("assets/sounds/sfx_jump.mp3", __ASSET__assets_sounds_sfx_jump_mp3);
+		type.set ("assets/sounds/sfx_jump.mp3", Reflect.field (AssetType, "music".toUpperCase ()));
+		className.set ("assets/sounds/sfx_powerup.mp3", __ASSET__assets_sounds_sfx_powerup_mp3);
+		type.set ("assets/sounds/sfx_powerup.mp3", Reflect.field (AssetType, "music".toUpperCase ()));
+		className.set ("assets/sounds/sfx_spin.mp3", __ASSET__assets_sounds_sfx_spin_mp3);
+		type.set ("assets/sounds/sfx_spin.mp3", Reflect.field (AssetType, "music".toUpperCase ()));
+		className.set ("assets/sounds/sfx_splash.mp3", __ASSET__assets_sounds_sfx_splash_mp3);
+		type.set ("assets/sounds/sfx_splash.mp3", Reflect.field (AssetType, "music".toUpperCase ()));
+		className.set ("assets/sounds/shoot1.mp3", __ASSET__assets_sounds_shoot1_mp3);
+		type.set ("assets/sounds/shoot1.mp3", Reflect.field (AssetType, "music".toUpperCase ()));
+		className.set ("assets/sounds/shoot2.mp3", __ASSET__assets_sounds_shoot2_mp3);
+		type.set ("assets/sounds/shoot2.mp3", Reflect.field (AssetType, "music".toUpperCase ()));
+		className.set ("assets/sounds/shoot3.mp3", __ASSET__assets_sounds_shoot3_mp3);
+		type.set ("assets/sounds/shoot3.mp3", Reflect.field (AssetType, "music".toUpperCase ()));
+		className.set ("assets/sounds/shoot_orca.mp3", __ASSET__assets_sounds_shoot_orca_mp3);
+		type.set ("assets/sounds/shoot_orca.mp3", Reflect.field (AssetType, "music".toUpperCase ()));
+		className.set ("assets/sounds/shoot_player.mp3", __ASSET__assets_sounds_shoot_player_mp3);
+		type.set ("assets/sounds/shoot_player.mp3", Reflect.field (AssetType, "music".toUpperCase ()));
 		className.set ("assets/sounds/beep.mp3", __ASSET__assets_sounds_beep_mp3);
 		type.set ("assets/sounds/beep.mp3", Reflect.field (AssetType, "music".toUpperCase ()));
 		className.set ("assets/sounds/flixel.mp3", __ASSET__assets_sounds_flixel_mp3);
@@ -136,6 +168,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 		addExternal("assets/images/fx/1up.png", "image", "assets/images/fx/1up.png");
 		addExternal("assets/images/fx/enemy_bullet.png", "image", "assets/images/fx/enemy_bullet.png");
 		addExternal("assets/images/fx/enemy_explosion.png", "image", "assets/images/fx/enemy_explosion.png");
+		addExternal("assets/images/fx/heart.png", "image", "assets/images/fx/heart.png");
 		addExternal("assets/images/fx/player_bullet.png", "image", "assets/images/fx/player_bullet.png");
 		addExternal("assets/images/fx/plusen.png", "image", "assets/images/fx/plusen.png");
 		addExternal("assets/images/fx/speechbubble.png", "image", "assets/images/fx/speechbubble.png");
@@ -158,7 +191,22 @@ class DefaultAssetLibrary extends AssetLibrary {
 		addExternal("assets/music/bottom3.mp3", "music", "assets/music/bottom3.mp3");
 		addExternal("assets/music/bottom4.mp3", "music", "assets/music/bottom4.mp3");
 		addExternal("assets/music/top.mp3", "music", "assets/music/top.mp3");
-		addExternal("assets/sounds/sounds-go-here.txt", "text", "assets/sounds/sounds-go-here.txt");
+		addExternal("assets/sounds/sfx_bone_1.mp3", "music", "assets/sounds/sfx_bone_1.mp3");
+		addExternal("assets/sounds/sfx_bone_2.mp3", "music", "assets/sounds/sfx_bone_2.mp3");
+		addExternal("assets/sounds/sfx_bone_3.mp3", "music", "assets/sounds/sfx_bone_3.mp3");
+		addExternal("assets/sounds/sfx_bone_4.mp3", "music", "assets/sounds/sfx_bone_4.mp3");
+		addExternal("assets/sounds/sfx_explosion.mp3", "music", "assets/sounds/sfx_explosion.mp3");
+		addExternal("assets/sounds/sfx_goal.mp3", "music", "assets/sounds/sfx_goal.mp3");
+		addExternal("assets/sounds/sfx_hit.mp3", "music", "assets/sounds/sfx_hit.mp3");
+		addExternal("assets/sounds/sfx_jump.mp3", "music", "assets/sounds/sfx_jump.mp3");
+		addExternal("assets/sounds/sfx_powerup.mp3", "music", "assets/sounds/sfx_powerup.mp3");
+		addExternal("assets/sounds/sfx_spin.mp3", "music", "assets/sounds/sfx_spin.mp3");
+		addExternal("assets/sounds/sfx_splash.mp3", "music", "assets/sounds/sfx_splash.mp3");
+		addExternal("assets/sounds/shoot1.mp3", "music", "assets/sounds/shoot1.mp3");
+		addExternal("assets/sounds/shoot2.mp3", "music", "assets/sounds/shoot2.mp3");
+		addExternal("assets/sounds/shoot3.mp3", "music", "assets/sounds/shoot3.mp3");
+		addExternal("assets/sounds/shoot_orca.mp3", "music", "assets/sounds/shoot_orca.mp3");
+		addExternal("assets/sounds/shoot_player.mp3", "music", "assets/sounds/shoot_player.mp3");
 		addExternal("assets/sounds/beep.mp3", "music", "assets/sounds/beep.mp3");
 		addExternal("assets/sounds/flixel.mp3", "music", "assets/sounds/flixel.mp3");
 		
@@ -741,6 +789,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 @:keep class __ASSET__assets_images_fx_1up_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep class __ASSET__assets_images_fx_enemy_bullet_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep class __ASSET__assets_images_fx_enemy_explosion_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep class __ASSET__assets_images_fx_heart_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep class __ASSET__assets_images_fx_player_bullet_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep class __ASSET__assets_images_fx_plusen_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep class __ASSET__assets_images_fx_speechbubble_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
@@ -763,12 +812,43 @@ class DefaultAssetLibrary extends AssetLibrary {
 @:keep class __ASSET__assets_music_bottom3_mp3 extends flash.media.Sound { }
 @:keep class __ASSET__assets_music_bottom4_mp3 extends flash.media.Sound { }
 @:keep class __ASSET__assets_music_top_mp3 extends flash.media.Sound { }
-@:keep class __ASSET__assets_sounds_sounds_go_here_txt extends flash.utils.ByteArray { }
+@:keep class __ASSET__assets_sounds_sfx_bone_1_mp3 extends flash.media.Sound { }
+@:keep class __ASSET__assets_sounds_sfx_bone_2_mp3 extends flash.media.Sound { }
+@:keep class __ASSET__assets_sounds_sfx_bone_3_mp3 extends flash.media.Sound { }
+@:keep class __ASSET__assets_sounds_sfx_bone_4_mp3 extends flash.media.Sound { }
+@:keep class __ASSET__assets_sounds_sfx_explosion_mp3 extends flash.media.Sound { }
+@:keep class __ASSET__assets_sounds_sfx_goal_mp3 extends flash.media.Sound { }
+@:keep class __ASSET__assets_sounds_sfx_hit_mp3 extends flash.media.Sound { }
+@:keep class __ASSET__assets_sounds_sfx_jump_mp3 extends flash.media.Sound { }
+@:keep class __ASSET__assets_sounds_sfx_powerup_mp3 extends flash.media.Sound { }
+@:keep class __ASSET__assets_sounds_sfx_spin_mp3 extends flash.media.Sound { }
+@:keep class __ASSET__assets_sounds_sfx_splash_mp3 extends flash.media.Sound { }
+@:keep class __ASSET__assets_sounds_shoot1_mp3 extends flash.media.Sound { }
+@:keep class __ASSET__assets_sounds_shoot2_mp3 extends flash.media.Sound { }
+@:keep class __ASSET__assets_sounds_shoot3_mp3 extends flash.media.Sound { }
+@:keep class __ASSET__assets_sounds_shoot_orca_mp3 extends flash.media.Sound { }
+@:keep class __ASSET__assets_sounds_shoot_player_mp3 extends flash.media.Sound { }
 @:keep class __ASSET__assets_sounds_beep_mp3 extends flash.media.Sound { }
 @:keep class __ASSET__assets_sounds_flixel_mp3 extends flash.media.Sound { }
 
 
 #elseif html5
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -76,6 +76,8 @@ class GoldFishPickup extends BasePickup {
 		this.kill();
 		Stats._current_fish++;
 		Stats._collected_fish++;
+		
+		Util.sfx("sfx_bone_1.mp3");
 	}
 	
 }

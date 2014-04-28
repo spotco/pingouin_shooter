@@ -58,6 +58,7 @@ class OrcaEnemy extends BaseEnemy {
 			var v = Util.normalized(Math.cos(_theta), Math.sin(_theta));
 			v.scaleBy(3);
 			Bullet.cons_bullet(GameState.instance._enemy_bullets, true).init(this.x + 70, this.y + 40, v.x, v.y);
+			Util.sfx("shoot_orca.mp3", 0.3);
 		}
 		if (this.x < -200 || this.y < -200 || this.x > FlxG.width + 200 || this.y > FlxG.height + 200) {
 			this.kill();

@@ -48,6 +48,7 @@ class TunaEnemy extends BaseEnemy {
 		this.x += _xdir * 4;
 		_ct++;
 		if (_ct % 10 == 0) {
+			Util.sfx("shoot3.mp3", 0.3);
 			Bullet.cons_bullet(GameState.instance._enemy_bullets, true).init(this.x + 72/2, this.y + 38/2, 0, 3 * _ydir);
 		}
 		

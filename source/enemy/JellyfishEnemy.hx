@@ -53,7 +53,10 @@ class JellyfishEnemy extends BaseEnemy {
 				v.scaleBy(120);
 				_tar.set(x + v.x, y + v.y);
 				
-				if (Util.pt_dist(x,y,GameState.instance._player._x,GameState.instance._player._y) > 40) {
+				if (Util.pt_dist(x, y, GameState.instance._player._x, GameState.instance._player._y) > 40) {
+					
+					Util.sfx("shoot1.mp3", 0.3);
+					
 					var dv = Util.normalized(
 						GameState.instance._player.get_bullet_spawn().x - this.x + Util.float_random( -40, 40), 
 						GameState.instance._player.get_bullet_spawn().y - this.y + Util.float_random( -40, 40)

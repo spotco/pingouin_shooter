@@ -7,6 +7,8 @@ import flixel.group.FlxGroup;
 import flixel.text.FlxText;
 import flixel.util.FlxPoint;
 import flixel.FlxBasic;
+import flixel.FlxG;
+import openfl.Assets;
 
 class Util {
 	
@@ -14,6 +16,10 @@ class Util {
 	public static var RAD_TO_DEG = 180 / Math.PI;
 	public static var Z_VEC = new Vector3D(0, 0, 1);
 	public static var FLXPT_ZERO = new FlxPoint(0, 0);
+	
+	public static function sfx(str:String,vol:Float = 1):Void {
+		FlxG.sound.play("assets/sounds/" + str,vol);
+	}
 	
 	public static function flxgroup_contains_instanceof(f:FlxGroup, c:Class<FlxBasic>):Bool {
 		for (i in f.members) {

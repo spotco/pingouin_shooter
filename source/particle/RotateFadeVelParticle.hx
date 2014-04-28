@@ -24,12 +24,15 @@ class RotateFadeVelParticle extends BaseParticle {
 	var _vr:Float = 0;
 	var _ct:Float = 0;
 	
+	var _has_played_sfx:Bool = false;
 	public function init(x:Float, y:Float):RotateFadeVelParticle {
 		this.reset(x, y);
 		_ct = 0;
 		this.alpha = 1;
 		this.scale.x = 1;
 		this.scale.y = 1;
+		_has_played_sfx = false;
+		
 		return this;
 	}
 	
@@ -63,6 +66,12 @@ class RotateFadeVelParticle extends BaseParticle {
 	}
 	
 	public override function game_update():Void {
+		
+		if (!_has_played_sfx ) {
+			_has_played_sfx = true;
+			Util.sfx("sfx_explosion.mp3", Math.min(this.scale.x/3,1));
+		}
+		
 		this.angle += _vr;
 		this.x += _vx;
 		this.y += _vy;

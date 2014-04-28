@@ -42,5 +42,6 @@ class OneUpPickup extends GoldFishPickup {
 	public override function pickup_effect():Void { 
 		this.kill();
 		Stats._current_lives++;
+		Util.sfx("sfx_powerup.mp3");
 	}
 }

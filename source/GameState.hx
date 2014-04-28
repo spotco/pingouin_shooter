@@ -39,6 +39,8 @@ class GameState extends FlxState {
 		super.create();
 		instance = this;
 		
+		Util.sfx("sfx_splash.mp3");
+		
 		if (Stats._stage == 0) {
 			FlxG.sound.playMusic(Assets.getMusic("assets/music/bottom1.mp3"));
 		} else if (Stats._stage == 1) {
@@ -75,10 +77,12 @@ class GameState extends FlxState {
 		_ui._fadeout.alpha = 1;
 	}
 	
+	var _player_shoot_sfx_ct:Int = 0;
 	var _ct:Int = 0;
 	override public function update():Void {
 		super.update();
 		_ct++;
+		_player_shoot_sfx_ct--;
 		if (_mode == GameStateMode_Jump_In) {
 			_player.game_update();
 			_player._y += _player._vy;
@@ -141,10 +145,15 @@ class GameState extends FlxState {
 				Stats._current_energy -= 5;
 				var v = _player.get_bullet_facing(10);
 				Bullet.cons_bullet(_player_bullets).init(_player.get_bullet_spawn().x, _player.get_bullet_spawn().y, v.x, v.y);
+				if (_player_shoot_sfx_ct <= 0) {
+					Util.sfx("shoot_player.mp3", 0.3);
+					_player_shoot_sfx_ct = 2;
+				}
 			}
 			if (FlxG.keys.justPressed.X && Stats._current_energy > 30) {
 				Stats._current_energy -= 30;
 				_player._dash_ct = 15;
+				Util.sfx("sfx_spin.mp3");
 				
 				var v = Util.normalized(Math.cos((_player._angle+90) * Util.DEG_TO_RAD), Math.sin((_player._angle+90) * Util.DEG_TO_RAD));
 				v.scaleBy(10);
@@ -165,6 +174,7 @@ class GameState extends FlxState {
 				FlxG.overlap(_enemy_bullets, _player._hitbox, function(b:Bullet, p:FlxSprite):Void {
 					if (_player._dash_ct <= 0) {
 						_mode = GameStateMode_Death_Fall;
+						Util.sfx("sfx_hit.mp3");
 					}
 					b.kill();
 					RotateFadeVelParticle.cons_particle(GameState.instance._particles).init(b.x, b.y).p_set_alpha(1, 0);

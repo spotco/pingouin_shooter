@@ -43,5 +43,6 @@ class EnergyUpPickup extends GoldFishPickup {
 		this.kill();
 		Stats._max_energy += 10;
 		Stats._current_energy = Stats._max_energy;
+		Util.sfx("sfx_powerup.mp3");
 	}
 }
