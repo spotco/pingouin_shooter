@@ -52,6 +52,8 @@ class TopState extends FlxState {
 			
 			this.add(new FlxSprite(FlxG.width*0.2, FlxG.height*0.1, Assets.getBitmapData("assets/images/logo.png")));
 			
+			this.add(Util.cons_text(FlxG.width * 0.2, FlxG.height * 0.325, "Made by SPOTCO (spotcos.com) for LD29 Compo", 0xFF000000, 14));
+			
 			var bub = new FlxSprite(FlxG.width * 0.85, FlxG.height * 0.4, Assets.getBitmapData("assets/images/fx/speechbubble.png"));
 			bub.alpha = 0.6;
 			this.add(bub);
