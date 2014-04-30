@@ -42,7 +42,7 @@ class Util {
 	}
 	
 	public static function dash():Bool {
-		return (Stats._control_mode == ControlMode_ARROWZX) ? FlxG.keys.pressed.X : FlxG.mouse.pressedRight;
+		return (Stats._control_mode == ControlMode_ARROWZX) ? FlxG.keys.justPressed.X : FlxG.mouse.justPressedRight;
 	}
 	
 	public static function sfx(str:String,vol:Float = 1):Void {
