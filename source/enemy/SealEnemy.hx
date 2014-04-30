@@ -95,6 +95,7 @@ class SealEnemy extends BaseEnemy {
 				_tar_vel.y = v.y;
 				
 				var i = 0.0;
+				Util.sfx("sfx_wavebullet.mp3");
 				while (i < 3.14 * 2) {
 					var dv = Util.normalized(Math.cos(i), Math.sin(i));
 					dv.scaleBy(2);

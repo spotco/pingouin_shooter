@@ -61,6 +61,12 @@ class DefaultAssetLibrary extends AssetLibrary {
 		type.set ("assets/images/char/top_character_player.png", Reflect.field (AssetType, "image".toUpperCase ()));
 		className.set ("assets/images/char/tuna.png", __ASSET__assets_images_char_tuna_png);
 		type.set ("assets/images/char/tuna.png", Reflect.field (AssetType, "image".toUpperCase ()));
+		className.set ("assets/images/controls_arrowzx.png", __ASSET__assets_images_controls_arrowzx_png);
+		type.set ("assets/images/controls_arrowzx.png", Reflect.field (AssetType, "image".toUpperCase ()));
+		className.set ("assets/images/controls_bubble.png", __ASSET__assets_images_controls_bubble_png);
+		type.set ("assets/images/controls_bubble.png", Reflect.field (AssetType, "image".toUpperCase ()));
+		className.set ("assets/images/controls_wasdmouse.png", __ASSET__assets_images_controls_wasdmouse_png);
+		type.set ("assets/images/controls_wasdmouse.png", Reflect.field (AssetType, "image".toUpperCase ()));
 		className.set ("assets/images/fx/1up.png", __ASSET__assets_images_fx_1up_png);
 		type.set ("assets/images/fx/1up.png", Reflect.field (AssetType, "image".toUpperCase ()));
 		className.set ("assets/images/fx/enemy_bullet.png", __ASSET__assets_images_fx_enemy_bullet_png);
@@ -87,8 +93,6 @@ class DefaultAssetLibrary extends AssetLibrary {
 		type.set ("assets/images/ss_1.png", Reflect.field (AssetType, "image".toUpperCase ()));
 		className.set ("assets/images/ss_2.png", __ASSET__assets_images_ss_2_png);
 		type.set ("assets/images/ss_2.png", Reflect.field (AssetType, "image".toUpperCase ()));
-		className.set ("assets/images/ss_3.png", __ASSET__assets_images_ss_3_png);
-		type.set ("assets/images/ss_3.png", Reflect.field (AssetType, "image".toUpperCase ()));
 		className.set ("assets/images/top/baby_anim.png", __ASSET__assets_images_top_baby_anim_png);
 		type.set ("assets/images/top/baby_anim.png", Reflect.field (AssetType, "image".toUpperCase ()));
 		className.set ("assets/images/top/mom_anim.png", __ASSET__assets_images_top_mom_anim_png);
@@ -111,6 +115,8 @@ class DefaultAssetLibrary extends AssetLibrary {
 		type.set ("assets/music/bottom3.mp3", Reflect.field (AssetType, "music".toUpperCase ()));
 		className.set ("assets/music/bottom4.mp3", __ASSET__assets_music_bottom4_mp3);
 		type.set ("assets/music/bottom4.mp3", Reflect.field (AssetType, "music".toUpperCase ()));
+		className.set ("assets/music/ss_3.png", __ASSET__assets_music_ss_3_png);
+		type.set ("assets/music/ss_3.png", Reflect.field (AssetType, "image".toUpperCase ()));
 		className.set ("assets/music/top.mp3", __ASSET__assets_music_top_mp3);
 		type.set ("assets/music/top.mp3", Reflect.field (AssetType, "music".toUpperCase ()));
 		className.set ("assets/sounds/sfx_bone_1.mp3", __ASSET__assets_sounds_sfx_bone_1_mp3);
@@ -135,6 +141,8 @@ class DefaultAssetLibrary extends AssetLibrary {
 		type.set ("assets/sounds/sfx_spin.mp3", Reflect.field (AssetType, "music".toUpperCase ()));
 		className.set ("assets/sounds/sfx_splash.mp3", __ASSET__assets_sounds_sfx_splash_mp3);
 		type.set ("assets/sounds/sfx_splash.mp3", Reflect.field (AssetType, "music".toUpperCase ()));
+		className.set ("assets/sounds/sfx_wavebullet.mp3", __ASSET__assets_sounds_sfx_wavebullet_mp3);
+		type.set ("assets/sounds/sfx_wavebullet.mp3", Reflect.field (AssetType, "music".toUpperCase ()));
 		className.set ("assets/sounds/shoot1.mp3", __ASSET__assets_sounds_shoot1_mp3);
 		type.set ("assets/sounds/shoot1.mp3", Reflect.field (AssetType, "music".toUpperCase ()));
 		className.set ("assets/sounds/shoot2.mp3", __ASSET__assets_sounds_shoot2_mp3);
@@ -165,6 +173,9 @@ class DefaultAssetLibrary extends AssetLibrary {
 		addExternal("assets/images/char/top_character_mom.png", "image", "assets/images/char/top_character_mom.png");
 		addExternal("assets/images/char/top_character_player.png", "image", "assets/images/char/top_character_player.png");
 		addExternal("assets/images/char/tuna.png", "image", "assets/images/char/tuna.png");
+		addExternal("assets/images/controls_arrowzx.png", "image", "assets/images/controls_arrowzx.png");
+		addExternal("assets/images/controls_bubble.png", "image", "assets/images/controls_bubble.png");
+		addExternal("assets/images/controls_wasdmouse.png", "image", "assets/images/controls_wasdmouse.png");
 		addExternal("assets/images/fx/1up.png", "image", "assets/images/fx/1up.png");
 		addExternal("assets/images/fx/enemy_bullet.png", "image", "assets/images/fx/enemy_bullet.png");
 		addExternal("assets/images/fx/enemy_explosion.png", "image", "assets/images/fx/enemy_explosion.png");
@@ -178,7 +189,6 @@ class DefaultAssetLibrary extends AssetLibrary {
 		addExternal("assets/images/splash.png", "image", "assets/images/splash.png");
 		addExternal("assets/images/ss_1.png", "image", "assets/images/ss_1.png");
 		addExternal("assets/images/ss_2.png", "image", "assets/images/ss_2.png");
-		addExternal("assets/images/ss_3.png", "image", "assets/images/ss_3.png");
 		addExternal("assets/images/top/baby_anim.png", "image", "assets/images/top/baby_anim.png");
 		addExternal("assets/images/top/mom_anim.png", "image", "assets/images/top/mom_anim.png");
 		addExternal("assets/images/top/player_anim.png", "image", "assets/images/top/player_anim.png");
@@ -190,6 +200,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 		addExternal("assets/music/bottom2.mp3", "music", "assets/music/bottom2.mp3");
 		addExternal("assets/music/bottom3.mp3", "music", "assets/music/bottom3.mp3");
 		addExternal("assets/music/bottom4.mp3", "music", "assets/music/bottom4.mp3");
+		addExternal("assets/music/ss_3.png", "image", "assets/music/ss_3.png");
 		addExternal("assets/music/top.mp3", "music", "assets/music/top.mp3");
 		addExternal("assets/sounds/sfx_bone_1.mp3", "music", "assets/sounds/sfx_bone_1.mp3");
 		addExternal("assets/sounds/sfx_bone_2.mp3", "music", "assets/sounds/sfx_bone_2.mp3");
@@ -202,6 +213,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 		addExternal("assets/sounds/sfx_powerup.mp3", "music", "assets/sounds/sfx_powerup.mp3");
 		addExternal("assets/sounds/sfx_spin.mp3", "music", "assets/sounds/sfx_spin.mp3");
 		addExternal("assets/sounds/sfx_splash.mp3", "music", "assets/sounds/sfx_splash.mp3");
+		addExternal("assets/sounds/sfx_wavebullet.mp3", "music", "assets/sounds/sfx_wavebullet.mp3");
 		addExternal("assets/sounds/shoot1.mp3", "music", "assets/sounds/shoot1.mp3");
 		addExternal("assets/sounds/shoot2.mp3", "music", "assets/sounds/shoot2.mp3");
 		addExternal("assets/sounds/shoot3.mp3", "music", "assets/sounds/shoot3.mp3");
@@ -786,6 +798,9 @@ class DefaultAssetLibrary extends AssetLibrary {
 @:keep class __ASSET__assets_images_char_top_character_mom_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep class __ASSET__assets_images_char_top_character_player_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep class __ASSET__assets_images_char_tuna_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep class __ASSET__assets_images_controls_arrowzx_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep class __ASSET__assets_images_controls_bubble_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep class __ASSET__assets_images_controls_wasdmouse_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep class __ASSET__assets_images_fx_1up_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep class __ASSET__assets_images_fx_enemy_bullet_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep class __ASSET__assets_images_fx_enemy_explosion_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
@@ -799,7 +814,6 @@ class DefaultAssetLibrary extends AssetLibrary {
 @:keep class __ASSET__assets_images_splash_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep class __ASSET__assets_images_ss_1_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep class __ASSET__assets_images_ss_2_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
-@:keep class __ASSET__assets_images_ss_3_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep class __ASSET__assets_images_top_baby_anim_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep class __ASSET__assets_images_top_mom_anim_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep class __ASSET__assets_images_top_player_anim_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
@@ -811,6 +825,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 @:keep class __ASSET__assets_music_bottom2_mp3 extends flash.media.Sound { }
 @:keep class __ASSET__assets_music_bottom3_mp3 extends flash.media.Sound { }
 @:keep class __ASSET__assets_music_bottom4_mp3 extends flash.media.Sound { }
+@:keep class __ASSET__assets_music_ss_3_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep class __ASSET__assets_music_top_mp3 extends flash.media.Sound { }
 @:keep class __ASSET__assets_sounds_sfx_bone_1_mp3 extends flash.media.Sound { }
 @:keep class __ASSET__assets_sounds_sfx_bone_2_mp3 extends flash.media.Sound { }
@@ -823,6 +838,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 @:keep class __ASSET__assets_sounds_sfx_powerup_mp3 extends flash.media.Sound { }
 @:keep class __ASSET__assets_sounds_sfx_spin_mp3 extends flash.media.Sound { }
 @:keep class __ASSET__assets_sounds_sfx_splash_mp3 extends flash.media.Sound { }
+@:keep class __ASSET__assets_sounds_sfx_wavebullet_mp3 extends flash.media.Sound { }
 @:keep class __ASSET__assets_sounds_shoot1_mp3 extends flash.media.Sound { }
 @:keep class __ASSET__assets_sounds_shoot2_mp3 extends flash.media.Sound { }
 @:keep class __ASSET__assets_sounds_shoot3_mp3 extends flash.media.Sound { }
@@ -833,6 +849,10 @@ class DefaultAssetLibrary extends AssetLibrary {
 
 
 #elseif html5
+
+
+
+
 
 
 

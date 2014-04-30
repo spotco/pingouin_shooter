@@ -36,6 +36,12 @@ class TopState extends FlxState {
 	var _ui:GameUI;
 	var _mode:TopStateMode;
 	
+	var _controls_arrowzx:FlxSprite;
+	var _controls_wasdmouse:FlxSprite;
+	var _controls_text:FlxText;
+	
+	var _pressz:FlxText;
+	
 	override public function create():Void {
 		super.create();
 		FlxG.sound.playMusic(Assets.getMusic("assets/music/top.mp3"));
@@ -54,10 +60,17 @@ class TopState extends FlxState {
 			
 			this.add(Util.cons_text(FlxG.width * 0.2, FlxG.height * 0.325, "Made by SPOTCO (spotcos.com) for LD29 Compo", 0xFF000000, 14));
 			
-			var bub = new FlxSprite(FlxG.width * 0.85, FlxG.height * 0.4, Assets.getBitmapData("assets/images/fx/speechbubble.png"));
+			var bub = new FlxSprite(FlxG.width * 0.775, FlxG.height * 0.25, Assets.getBitmapData("assets/images/controls_bubble.png"));
 			bub.alpha = 0.6;
 			this.add(bub);
-			this.add(Util.cons_text(FlxG.width * 0.85 + 5, FlxG.height * 0.4 + 5, "Shoot: Z\nDash: X\nMove:\n   Arrow keys"));
+			this.add( Util.cons_text(FlxG.width * 0.775 + 5, FlxG.height * 0.25+5, "Control Mode:"));
+			_controls_text = Util.cons_text(FlxG.width * 0.78 + 5, FlxG.height * 0.4, "Shoot: Z\nDash: X\nFocus: Shift\nMove:\n   Arrow keys");
+			this.add(_controls_text);
+			
+			_controls_arrowzx = new FlxSprite(FlxG.width * 0.79, FlxG.height * 0.286+2, Assets.getBitmapData("assets/images/controls_arrowzx.png"));
+			this.add(_controls_arrowzx);
+			_controls_wasdmouse = new FlxSprite(FlxG.width * 0.855, FlxG.height * 0.286+2, Assets.getBitmapData("assets/images/controls_wasdmouse.png"));
+			this.add(_controls_wasdmouse);
 			
 			_eat_target = cons_penguin(FlxG.width * 0.2, FlxG.height * 0.65,this);
 			_eat_target.flipX  = true;
@@ -116,9 +129,9 @@ class TopState extends FlxState {
 		_mom_speechbubble.add(_mom_speechbubble_fishreq);
 		_mom_speechbubble.visible = false;
 		
-		var pressz = new FlxText(mom_speechbubble_bg.x + 5, mom_speechbubble_bg.y + 30, 0, "Press Z", 15);
-		pressz.color = 0xFF000000;
-		_mom_speechbubble.add(pressz);
+		_pressz = new FlxText(mom_speechbubble_bg.x + 5, mom_speechbubble_bg.y + 30, 0,"", 15);
+		_pressz.color = 0xFF000000;
+		_mom_speechbubble.add(_pressz);
 		
 		_particles = new FlxGroup();
 		this.add(_particles);
@@ -135,6 +148,22 @@ class TopState extends FlxState {
 		
 		_mode = TopStateMode_Fadein_From_Game;
 		_ui._fadeout.alpha = 1;
+		
+		update_controls();
+	}
+	
+	function update_controls():Void {
+		if (Stats._control_mode == ControlMode_ARROWZX) {
+			_pressz.text = "Press Z!";
+			FlxG.mouse.visible = false;
+			if (_controls_arrowzx == null) return;
+			_controls_text.text = "Shoot: Z\nDash: X\nFocus: Shift\nMove:\n   Arrow keys";
+		} else {
+			_pressz.text = "  Click!";
+			FlxG.mouse.visible = true;
+			if (_controls_arrowzx == null) return;
+			_controls_text.text = "Shoot: LMB\nDash: RMB\nFocus: Shift\nMove:\n   WASD";
+		}
 	}
 	
 	var _kill:Bool = false;
@@ -143,6 +172,30 @@ class TopState extends FlxState {
 	override public function update():Void {
 		super.update();
 		if (_kill) return;
+		
+		if (_controls_arrowzx != null) {
+			_controls_arrowzx.alpha = 0.3;
+			_controls_wasdmouse.alpha = 0.3;
+			if (Stats._control_mode == ControlMode_ARROWZX) {
+				_controls_arrowzx.alpha = 1;
+				
+				if (FlxG.mouse.justPressed || FlxG.keys.justPressed.W || FlxG.keys.justPressed.A || FlxG.keys.justPressed.S|| FlxG.keys.justPressed.D) {
+					Stats._control_mode = ControlMode_WASDMOUSE;
+					update_controls();
+				}
+				
+			} else {
+				_controls_wasdmouse.alpha = 1;
+				
+				if (FlxG.keys.justPressed.Z || FlxG.keys.justPressed.X || FlxG.keys.justPressed.LEFT || FlxG.keys.justPressed.UP || FlxG.keys.justPressed.RIGHT || FlxG.keys.justPressed.DOWN) {
+					Stats._control_mode = ControlMode_ARROWZX;
+					update_controls();
+				}
+				
+			}
+		}
+		
+		
 		_heart_t += 0.05;
 		var sc = (Math.sin(_heart_t) + 1)/2 * 0.5 + 0.5;
 		_heart.scale.set(sc, sc);
@@ -184,12 +237,12 @@ class TopState extends FlxState {
 			
 			for (i in _particles.members) if (i.alive) cast(i, BaseParticle).game_update();
 			
-			if (FlxG.keys.pressed.LEFT && _player.x > FlxG.width * 0.3) {
+			if (Util.move_left() && _player.x > FlxG.width * 0.3) {
 				_player.x -= 5; 
 				_player.flipX = false;
 				_player.animation.play("walk");
 				
-			} else if (FlxG.keys.pressed.RIGHT && _player.x < FlxG.width * 0.675 ) {
+			} else if (Util.move_right() && _player.x < FlxG.width * 0.675 ) {
 				_player.x += 5;
 				_player.flipX = true;
 				_player.animation.play("walk");
@@ -207,12 +260,13 @@ class TopState extends FlxState {
 			} else {
 				_eat_target.animation.play("stand");
 			}
-			
+			_feedct--;
 			if (_player.x < FlxG.width * 0.4) {
 				_mom_speechbubble.visible = true;
 				
-				if (FlxG.keys.justPressed.Z && Stats._current_fish > 0 && Stats._required_fish > 0) {
+				if (Util.shoot() && _feedct <= 0 && Stats._current_fish > 0 && Stats._required_fish > 0) {
 					Util.sfx("sfx_jump.mp3");
+					_feedct = 4;
 					var eat_target_offset = new FlxPoint(0, 0);
 					if (Stats._stage == 0 || Stats._stage == 1) {
 						eat_target_offset.x = 25;
@@ -242,6 +296,7 @@ class TopState extends FlxState {
 			}
 		}
 	}
+	var _feedct = 0;
 	
 	public static function cons_baby(x:Float,y:Float,g:FlxGroup):FlxSprite { //FlxG.width * 0.1, FlxG.height * 0.65 + 49
 		var rtv = new FlxSprite(x,y);

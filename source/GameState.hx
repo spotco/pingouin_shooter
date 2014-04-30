@@ -141,7 +141,7 @@ class GameState extends FlxState {
 			
 		} else if (_mode == GameStateMode_Gameplay) {
 			this.player_control();
-			if (FlxG.keys.pressed.Z && Stats._current_energy > 5) {
+			if (Util.shoot() && Stats._current_energy > 5) {
 				Stats._current_energy -= 5;
 				var v = _player.get_bullet_facing(10);
 				Bullet.cons_bullet(_player_bullets).init(_player.get_bullet_spawn().x, _player.get_bullet_spawn().y, v.x, v.y);
@@ -150,7 +150,7 @@ class GameState extends FlxState {
 					_player_shoot_sfx_ct = 2;
 				}
 			}
-			if (FlxG.keys.justPressed.X && Stats._current_energy > 30) {
+			if (Util.dash() && Stats._current_energy > 30) {
 				Stats._current_energy -= 30;
 				_player._dash_ct = 15;
 				Util.sfx("sfx_spin.mp3");
@@ -489,16 +489,16 @@ class GameState extends FlxState {
 	private function player_control():Void {
 		_control_vec.x = 0;
 		_control_vec.y = 0;
-		if (FlxG.keys.pressed.LEFT) {
+		if (Util.move_left()) {
 			_control_vec.x = -1;
 		}
-		if (FlxG.keys.pressed.RIGHT) {
+		if (Util.move_right()) {
 			_control_vec.x = 1;
 		}
-		if (FlxG.keys.pressed.UP) {
+		if (Util.move_up()) {
 			_control_vec.y = -1;
 		}
-		if (FlxG.keys.pressed.DOWN) {
+		if (Util.move_down()) {
 			_control_vec.y = 1;
 		}
 		if (_player._dash_ct > 0 && !_control_vec.isZero()) {
@@ -507,7 +507,7 @@ class GameState extends FlxState {
 			_player._vy = _player._dash_vec.y + _control_vec.y;
 			
 		} else if (!_control_vec.isZero()) {
-			if (FlxG.keys.pressed.SHIFT) {
+			if (Util.focus()) {
 				_control_vec.normalize().scale(2);
 			} else {
 				_control_vec.normalize().scale(5);

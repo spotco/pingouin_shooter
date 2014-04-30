@@ -53,7 +53,8 @@ class BigJellyfishEnemy extends BaseEnemy {
 				v.scaleBy(220);
 				_tar.set(x + v.x, y + v.y);
 				
-				if (Util.pt_dist(x,y,GameState.instance._player._x,GameState.instance._player._y) > 40) {
+				if (Util.pt_dist(x, y, GameState.instance._player._x, GameState.instance._player._y) > 40) {
+					Util.sfx("sfx_wavebullet.mp3");
 					var i = 0.0;
 					while (i < 3.14 * 2) {
 						var dv = Util.normalized(Math.cos(i), Math.sin(i));

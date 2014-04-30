@@ -1,6 +1,13 @@
 package ;
 
+enum ControlMode {
+	ControlMode_ARROWZX;
+	ControlMode_WASDMOUSE;
+}
+
 class Stats {
+	
+	public static var _control_mode:ControlMode = ControlMode_ARROWZX;
 
 	public static var _current_fish:Int = 0;
 	public static var _required_fish:Int = 0;
@@ -19,7 +26,7 @@ class Stats {
 		_current_energy = _max_energy;
 		Stats._current_lives = 5;
 		
-		//_stage = 3;
+		//_stage = 2;
 		
 		if (_stage == 0) {
 			_required_fish = 25;

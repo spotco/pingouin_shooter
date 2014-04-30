@@ -74,7 +74,8 @@ class Main extends Sprite
 		
 		var game = new FlxGame(gameWidth, gameHeight, initialState, zoom, framerate, framerate, skipSplash, startFullscreen);
 		addChild(game);
-		FlxG.mouse.useSystemCursor = true;
+		FlxG.mouse.visible = false;
+		//FlxG.mouse.useSystemCursor = true;
 		
 	}
 }

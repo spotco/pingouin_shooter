@@ -50,19 +50,26 @@ class GamePlayer extends FlxGroup {
 	public function game_update():Void {
 		super.update();
 		
-		var facing_x = 0;
-		var facing_y = 0;
-		if (FlxG.keys.pressed.LEFT) {
-			facing_x = 1;
-		}
-		if (FlxG.keys.pressed.RIGHT) {
-			facing_x = -1;
-		}
-		if (FlxG.keys.pressed.UP) {
-			facing_y = 1;
-		}
-		if (FlxG.keys.pressed.DOWN) {
-			facing_y = -1;
+		var facing_x = 0.0;
+		var facing_y = 0.0;
+		if (Stats._control_mode == ControlMode_ARROWZX) {
+			if (Util.move_left()) {
+				facing_x = 1;
+			}
+			if (Util.move_right()) {
+				facing_x = -1;
+			}
+			if (Util.move_up()) {
+				facing_y = 1;
+			}
+			if (Util.move_down()) {
+				facing_y = -1;
+			}
+		} else if (FlxG.mouse.x != this.get_bullet_spawn().x) {
+			var spawn = this.get_bullet_spawn();
+			var v = Util.normalized(FlxG.mouse.x - spawn.x, FlxG.mouse.y - spawn.y);
+			facing_x = -v.x;
+			facing_y = -v.y;
 		}
 		
 		if (facing_x != 0 || facing_y != 0 && GameState.instance._mode == GameStateMode_Gameplay) {

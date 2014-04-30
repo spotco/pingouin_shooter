@@ -17,6 +17,34 @@ class Util {
 	public static var Z_VEC = new Vector3D(0, 0, 1);
 	public static var FLXPT_ZERO = new FlxPoint(0, 0);
 	
+	public static function move_left():Bool {
+		return (Stats._control_mode == ControlMode_ARROWZX) ? FlxG.keys.pressed.LEFT : FlxG.keys.pressed.A;
+	}
+	
+	public static function move_right():Bool {
+		return (Stats._control_mode == ControlMode_ARROWZX) ? FlxG.keys.pressed.RIGHT : FlxG.keys.pressed.D;
+	}
+	
+	public static function move_up():Bool {
+		return (Stats._control_mode == ControlMode_ARROWZX) ? FlxG.keys.pressed.UP : FlxG.keys.pressed.W;
+	}
+	
+	public static function move_down():Bool {
+		return (Stats._control_mode == ControlMode_ARROWZX) ? FlxG.keys.pressed.DOWN : FlxG.keys.pressed.S;
+	}
+	
+	public static function focus():Bool {
+		return FlxG.keys.pressed.SHIFT;
+	}
+	
+	public static function shoot():Bool {
+		return (Stats._control_mode == ControlMode_ARROWZX) ? FlxG.keys.pressed.Z : FlxG.mouse.pressed;
+	}
+	
+	public static function dash():Bool {
+		return (Stats._control_mode == ControlMode_ARROWZX) ? FlxG.keys.pressed.X : FlxG.mouse.pressedRight;
+	}
+	
 	public static function sfx(str:String,vol:Float = 1):Void {
 		FlxG.sound.play("assets/sounds/" + str,vol);
 	}
