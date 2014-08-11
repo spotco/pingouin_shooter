@@ -107,6 +107,8 @@ class DefaultAssetLibrary extends AssetLibrary {
 		type.set ("assets/images/top/top_crowd_medium.png", Reflect.field (AssetType, "image".toUpperCase ()));
 		className.set ("assets/images/top/top_smallcrowd.png", __ASSET__assets_images_top_top_smallcrowd_png);
 		type.set ("assets/images/top/top_smallcrowd.png", Reflect.field (AssetType, "image".toUpperCase ()));
+		className.set ("assets/images/top/_old/player_anim.png", __ASSET__assets_images_top__old_player_anim_png);
+		type.set ("assets/images/top/_old/player_anim.png", Reflect.field (AssetType, "image".toUpperCase ()));
 		className.set ("assets/music/bottom1.mp3", __ASSET__assets_music_bottom1_mp3);
 		type.set ("assets/music/bottom1.mp3", Reflect.field (AssetType, "music".toUpperCase ()));
 		className.set ("assets/music/bottom2.mp3", __ASSET__assets_music_bottom2_mp3);
@@ -196,6 +198,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 		addExternal("assets/images/top/top_crowd.png", "image", "assets/images/top/top_crowd.png");
 		addExternal("assets/images/top/top_crowd_medium.png", "image", "assets/images/top/top_crowd_medium.png");
 		addExternal("assets/images/top/top_smallcrowd.png", "image", "assets/images/top/top_smallcrowd.png");
+		addExternal("assets/images/top/_old/player_anim.png", "image", "assets/images/top/_old/player_anim.png");
 		addExternal("assets/music/bottom1.mp3", "music", "assets/music/bottom1.mp3");
 		addExternal("assets/music/bottom2.mp3", "music", "assets/music/bottom2.mp3");
 		addExternal("assets/music/bottom3.mp3", "music", "assets/music/bottom3.mp3");
@@ -821,6 +824,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 @:keep class __ASSET__assets_images_top_top_crowd_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep class __ASSET__assets_images_top_top_crowd_medium_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep class __ASSET__assets_images_top_top_smallcrowd_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep class __ASSET__assets_images_top__old_player_anim_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep class __ASSET__assets_music_bottom1_mp3 extends flash.media.Sound { }
 @:keep class __ASSET__assets_music_bottom2_mp3 extends flash.media.Sound { }
 @:keep class __ASSET__assets_music_bottom3_mp3 extends flash.media.Sound { }
@@ -849,6 +853,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 
 
 #elseif html5
+
 
 
 

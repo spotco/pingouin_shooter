@@ -27,10 +27,12 @@ class GamePlayer extends FlxGroup {
 	
 	public function new() {
 		super();
-		_body.loadGraphic(Assets.getBitmapData("assets/images/char/player.png"), true, 30, 53);
-		_body.animation.add("stand", [0]);
-		_body.animation.add("swim", [0, 1, 3, 1], 20, true);
-		_body.animation.add("dash", [2]);
+		
+		_body.loadGraphic(Assets.getBitmapData("assets/images/char/player.png"), true, 50, 78);
+		
+		_body.animation.add("stand", [0,1,2,3,2,1], 2, true);
+		_body.animation.add("swim", [4,5,6,7,6,5], 10, true);
+		_body.animation.add("dash", [8,9], 15, true);
 		_body.animation.play("stand", true);
 		
 		_hitbox.loadGraphic(Assets.getBitmapData("assets/images/player_hitbox.png"));

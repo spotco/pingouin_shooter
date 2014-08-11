@@ -320,10 +320,10 @@ class TopState extends FlxState {
 	
 	public static function cons_penguin(x:Float,y:Float,g:FlxGroup):FlxSprite { //FlxG.width * 0.64, FlxG.height * 0.65
 		var rtv = new FlxSprite(x,y);
-		rtv.loadGraphic(Assets.getBitmapData("assets/images/top/player_anim.png"), true, 45, 85);
-		rtv.animation.add("stand", [2]);
-		rtv.animation.add("walk", [2, 1],25);
-		rtv.animation.add("barf", [0, 2], 10);
+		rtv.loadGraphic(Assets.getBitmapData("assets/images/top/player_anim.png"), true, 83, 101);
+		rtv.animation.add("stand", [9]);
+		rtv.animation.add("walk", [8, 3, 4, 3],25);
+		rtv.animation.add("barf", [9,5], 10);
 		rtv.animation.play("stand");
 		g.add(rtv);
 		return rtv;
