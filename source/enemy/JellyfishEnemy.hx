@@ -27,7 +27,10 @@ class JellyfishEnemy extends BaseEnemy {
 	
 	public function new() {
 		super();
-		this.loadGraphic(Assets.getBitmapData("assets/images/char/jellyfish.png"));
+		this.loadGraphic(Assets.getBitmapData("assets/images/char/jellyfish_anim.png"), true, 39, 44);
+		this.animation.add("stand", [0,1,2],15);
+		this.animation.add("flash", [2,3,2,3,4,5,6], 10,false);
+		this.animation.play("stand");
 	}
 	
 	var _xdir:Float = 1;
@@ -40,7 +43,8 @@ class JellyfishEnemy extends BaseEnemy {
 		_tar.set(x+xdir*80, y);
 		_xdir = xdir;
 		_delay = 0;
-		this.flipX = _xdir > 0;
+		this.flipX = _xdir < 0;
+		this.animation.play("stand");
 	}
 	
 	public override function game_update():Void {
@@ -48,6 +52,10 @@ class JellyfishEnemy extends BaseEnemy {
 		
 		if (_delay > 0) {
 			_delay--;
+			
+			if (_delay < 8 && _delay > -4 && (this.animation.curAnim == null || this.animation.curAnim.name != "flash")) {
+				this.animation.play("flash");
+			}
 			if (_delay <= 0) {
 				var v = Util.normalized(Util.float_random(60, 120) * _xdir, Util.float_random( -100, 100));
 				v.scaleBy(120);
@@ -68,11 +76,17 @@ class JellyfishEnemy extends BaseEnemy {
 			
 		} else if (Util.pt_dist(x, y, _tar.x, _tar.y) < 1) {
 			_delay = Util.float_random(10, 40);
+			if (this.animation.curAnim == null) {
+				this.animation.play("stand");
+			}
 			
 		} else {
 			var p = Util.drp_pos(Util.flxpt(x,y), _tar, 30);
 			this.x = p.x;
 			this.y = p.y;
+			if (this.animation.curAnim == null) {
+				this.animation.play("stand");
+			}
 			
 		}
 		

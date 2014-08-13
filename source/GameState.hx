@@ -12,6 +12,7 @@ import openfl.Assets;
 import enemy.*;
 import particle.*;
 import pickup.BasePickup;
+import bgdetail.*;
 
 enum GameStateMode {
 	GameStateMode_Gameplay;
@@ -22,6 +23,8 @@ enum GameStateMode {
 
 class GameState extends FlxState {
 
+	public var _bgkelps:FlxGroup = new FlxGroup();
+	
 	public var _player:GamePlayer;
 	public var _player_bullets:FlxGroup = new FlxGroup();
 	public var _enemies:FlxGroup = new FlxGroup();
@@ -51,8 +54,14 @@ class GameState extends FlxState {
 			FlxG.sound.playMusic(Assets.getMusic("assets/music/bottom4.mp3"));
 		}
 		
-		var bg = new FlxSprite(0,0,Assets.getBitmapData("assets/images/bottom/bottom_bg.png"));
-		this.add(bg);
+		this.add(new FlxSprite(0,0,Assets.getBitmapData("assets/images/bottom/bottom_bg_0.png")));
+		this.add(_bgkelps);
+		this.add(new FlxSprite(0,0,Assets.getBitmapData("assets/images/bottom/bottom_bg_1.png")));
+		
+		BgKelp.cons(_bgkelps).init(0);
+		BgKelp.cons(_bgkelps).init(1);
+		BgKelp.cons(_bgkelps).init(2);
+		
 		
 		_player = new GamePlayer();
 		_player._x = FlxG.width * 0.5;

@@ -96,6 +96,10 @@ class Util {
 		return min + Math.random() * (max - min);
 	}
 	
+	public static function int_random(min:Int, max:Int):Int {
+		return Math.floor(float_random(min,max));
+	}
+	
 	public static function pt_dist(x_0:Float, y_0:Float, x_1:Float, y_1:Float):Float {
 		return Math.sqrt(Math.pow(x_1 - x_0, 2) + Math.pow(y_1 - y_0, 2));
 	}

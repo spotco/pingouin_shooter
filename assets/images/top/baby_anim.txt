@@ -1,0 +1,1 @@
+[3]baby_4.png[2]baby_3.png[1]baby_2.png[0]baby_1.pngwidth:39 px, height:52 px

@@ -11,6 +11,7 @@ import flixel.util.FlxMath;
 import flixel.util.FlxPoint;
 import openfl.Assets;
 import particle.*;
+import bgdetail.*;
 
 enum TopStateMode {
 	TopStateMode_Gameplay;
@@ -25,6 +26,8 @@ class TopState extends FlxState {
 	
 	var _player:FlxSprite;
 	var _eat_target:FlxSprite;
+	
+	var _top_penguins:FlxGroup = new FlxGroup();
 	
 	var _mom_speechbubble:FlxGroup;
 	var _mom_speechbubble_fishreq:FlxText;
@@ -53,8 +56,13 @@ class TopState extends FlxState {
 		
 		var eat_target_offset = Util.flxpt(0, 0);
 		
+		this.add(_top_penguins);
 		if (Stats._stage == 0) {
-			this.add(new FlxSprite(0, 0, Assets.getBitmapData("assets/images/top/top_smallcrowd.png")));
+			//this.add(new FlxSprite(0, 0, Assets.getBitmapData("assets/images/top/top_smallcrowd.png")));
+			
+			TopPenguin.cons(_top_penguins).init(300, 230).set_scale(0.6).set_opacity(0.8).set_wander_dx( 150);
+			TopPenguin.cons(_top_penguins).init(400, 240).set_scale(0.65).set_opacity(0.8).set_wander_dx( -100);
+			TopPenguin.cons(_top_penguins).init(500, 250).set_scale(0.7).set_opacity(0.8).set_wander_dx( -100);
 			
 			this.add(new FlxSprite(FlxG.width*0.2, FlxG.height*0.1, Assets.getBitmapData("assets/images/logo.png")));
 			
@@ -72,21 +80,20 @@ class TopState extends FlxState {
 			_controls_wasdmouse = new FlxSprite(FlxG.width * 0.855, FlxG.height * 0.286+2, Assets.getBitmapData("assets/images/controls_wasdmouse.png"));
 			this.add(_controls_wasdmouse);
 			
-			_eat_target = cons_penguin(FlxG.width * 0.2, FlxG.height * 0.65,this);
-			_eat_target.flipX  = true;
+			_eat_target = cons_mom_penguin(FlxG.width * 0.2, FlxG.height * 0.65,this);
 			
 			eat_target_offset.x = -20;
 			eat_target_offset.y = -65;
 			
 		} else if (Stats._stage == 1) {
-			this.add(new FlxSprite(0, 0, Assets.getBitmapData("assets/images/top/top_crowd.png")));
+			//this.add(new FlxSprite(0, 0, Assets.getBitmapData("assets/images/top/top_crowd.png")));
 			_eat_target = cons_penguin_with_egg(FlxG.width * 0.2, FlxG.height * 0.65,this);
 			
 			eat_target_offset.x = -20;
 			eat_target_offset.y = -65;
 			
 		} else if (Stats._stage == 2) {
-			this.add(new FlxSprite(0, 0, Assets.getBitmapData("assets/images/top/top_crowd.png")));
+			//this.add(new FlxSprite(0, 0, Assets.getBitmapData("assets/images/top/top_crowd.png")));
 			var mom = cons_penguin(FlxG.width * 0.1, FlxG.height * 0.65,this);
 			mom.flipX = true;
 			this.add(mom);
@@ -96,9 +103,8 @@ class TopState extends FlxState {
 			eat_target_offset.y = -75;
 			
 		} else if (Stats._stage == 3) {
-			this.add(new FlxSprite(0, 0, Assets.getBitmapData("assets/images/top/top_crowd_medium.png")));
-			_eat_target = cons_baby(FlxG.width * 0.2, FlxG.height * 0.65 + 49,this);
-			_eat_target.scale.set(1.3, 1.3);
+			//this.add(new FlxSprite(0, 0, Assets.getBitmapData("assets/images/top/top_crowd_medium.png")));
+			_eat_target = cons_fledgling(FlxG.width * 0.2, FlxG.height * 0.65 + 49,this);
 			
 			eat_target_offset.x = -30;
 			eat_target_offset.y = -75;
@@ -300,9 +306,19 @@ class TopState extends FlxState {
 	
 	public static function cons_baby(x:Float,y:Float,g:FlxGroup):FlxSprite { //FlxG.width * 0.1, FlxG.height * 0.65 + 49
 		var rtv = new FlxSprite(x,y);
-		rtv.loadGraphic(Assets.getBitmapData("assets/images/top/baby_anim.png"),true,26,34);
-		rtv.animation.add("barf", [0, 1], 10);
-		rtv.animation.add("stand", [1]);
+		rtv.loadGraphic(Assets.getBitmapData("assets/images/top/baby_anim.png"),true,39,52);
+		rtv.animation.add("barf", [1, 2, 3, 2], 15);
+		rtv.animation.add("stand", [0]);
+		rtv.animation.play("stand");
+		g.add(rtv);
+		return rtv;
+	}
+	
+	public static function cons_fledgling(x:Float,y:Float,g:FlxGroup):FlxSprite { //FlxG.width * 0.1, FlxG.height * 0.65 + 49
+		var rtv = new FlxSprite(x,y);
+		rtv.loadGraphic(Assets.getBitmapData("assets/images/top/fledgling_anim.png"),true,52,87);
+		rtv.animation.add("barf", [1, 2, 3, 2], 15);
+		rtv.animation.add("stand", [0]);
 		rtv.animation.play("stand");
 		g.add(rtv);
 		return rtv;
@@ -310,9 +326,19 @@ class TopState extends FlxState {
 	
 	public static function cons_penguin_with_egg(x:Float,y:Float,g:FlxGroup):FlxSprite { //FlxG.width * 0.2, FlxG.height * 0.65
 		var rtv = new FlxSprite(x,y);
-		rtv.loadGraphic(Assets.getBitmapData("assets/images/top/mom_anim.png"),true,45,83);
-		rtv.animation.add("barf", [1, 0], 10);
-		rtv.animation.add("stand", [1]);
+		rtv.loadGraphic(Assets.getBitmapData("assets/images/top/mom_anim.png"),true,62,94);
+		rtv.animation.add("barf", [5,6,7,6], 15);
+		rtv.animation.add("stand", [4]);
+		rtv.animation.play("stand");
+		g.add(rtv);
+		return rtv;
+	}
+	
+	public static function cons_mom_penguin(x:Float,y:Float,g:FlxGroup):FlxSprite { //FlxG.width * 0.2, FlxG.height * 0.65
+		var rtv = new FlxSprite(x,y);
+		rtv.loadGraphic(Assets.getBitmapData("assets/images/top/mom_anim.png"),true,62,94);
+		rtv.animation.add("barf", [1,2,3,2], 15);
+		rtv.animation.add("stand", [0]);
 		rtv.animation.play("stand");
 		g.add(rtv);
 		return rtv;
@@ -320,10 +346,10 @@ class TopState extends FlxState {
 	
 	public static function cons_penguin(x:Float,y:Float,g:FlxGroup):FlxSprite { //FlxG.width * 0.64, FlxG.height * 0.65
 		var rtv = new FlxSprite(x,y);
-		rtv.loadGraphic(Assets.getBitmapData("assets/images/top/player_anim.png"), true, 83, 101);
-		rtv.animation.add("stand", [9]);
-		rtv.animation.add("walk", [8, 3, 4, 3],25);
-		rtv.animation.add("barf", [9,5], 10);
+		rtv.loadGraphic(Assets.getBitmapData("assets/images/top/player_anim.png"), true, 112, 130);
+		rtv.animation.add("stand", [0]);
+		rtv.animation.add("walk", [1,2,3,2], 15);
+		rtv.animation.add("barf", [18,19,20,21],15);
 		rtv.animation.play("stand");
 		g.add(rtv);
 		return rtv;
